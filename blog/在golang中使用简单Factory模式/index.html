@@ -1,0 +1,1523 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
+      
+      
+        <link rel="canonical" href="https://golang.xueshop.cn/blog/在golang中使用简单Factory模式/">
+      
+      
+        <meta name="author" content="xueshop">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>11. 在golang中使用简单Factory模式 - Golang学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#date2019-07-17-2021" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://golang.xueshop.cn" title="Golang学习笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang学习笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                11. 在golang中使用简单Factory模式
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="介绍" class="md-tabs__link">
+        介绍
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../golang/json/smart-config/" title="Golang" class="md-tabs__link">
+          Golang
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../git有用且不容易记住的命令/" title="Blog" class="md-tabs__link md-tabs__link--active">
+          Blog
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../base/ascii/" title="基础知识" class="md-tabs__link">
+          基础知识
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://golang.xueshop.cn" title="Golang学习笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="介绍" class="md-nav__link">
+      介绍
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Golang
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Golang
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/json/smart-config/" title="1. json" class="md-nav__link">
+      1. json
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      2. 结构体
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        2. 结构体
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/struct/marshal/" title="2.1 解析" class="md-nav__link">
+      2.1 解析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/struct/tag/" title="2.2 标签" class="md-nav__link">
+      2.2 标签
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      3. 反射
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        3. 反射
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/reflect/type/" title="3.1 类型比对" class="md-nav__link">
+      3.1 类型比对
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      4. io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        4. io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
+      4.1 io.Reader和io.Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
+      4.2 bytes.buffer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      5. 并发编程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        5. 并发编程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
+      5.1 利用chan实现timeout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      6. 函数
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        6. 函数
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
+      6.1 函数作为参数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
+      6.2 函数类型申明
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      7. 时间
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        7. 时间
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/time/时间计算/" title="7.1 时间计算" class="md-nav__link">
+      7.1 时间计算
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
+      7.2 ticker and timer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      8. 超时和重试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        8. 超时和重试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/超时和重试/timeout/" title="超时" class="md-nav__link">
+      超时
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
+      并发使用chan还是mutex
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      9. go mod
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-9">
+        9. go mod
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/mod/go-mod/" title="go mod基础" class="md-nav__link">
+      go mod基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      10. 初识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        10. 初识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      11. 设置
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-11">
+        11. 设置
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/设置/gomod/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Blog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
+      1. git有用且不容易记住的命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
+      2. 一些有用的linux命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
+      3. PHP开发中一些小技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
+      4. docker基础知识积累
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
+      5. php常用面试题汇总
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
+      6. php逐步更新的细节
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
+      7. mac下回滚php版本到php7.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php中的null合并操作符/" title="8. php中的null合并操作符" class="md-nav__link">
+      8. php中的null合并操作符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
+      9. 短链接服务的设计思路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PHP异常那些事/" title="10. PHP异常那些事" class="md-nav__link">
+      10. PHP异常那些事
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        11. 在golang中使用简单Factory模式
+      </label>
+    
+    <a href="./" title="11. 在golang中使用简单Factory模式" class="md-nav__link md-nav__link--active">
+      11. 在golang中使用简单Factory模式
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#date2019-07-17-2021" title="date:2019-07-17 20:21" class="md-nav__link">
+    date:2019-07-17 20:21
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="什么是工厂模式?" class="md-nav__link">
+    什么是工厂模式?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golang" title="那么我们来看看,在golang中如何写一个工厂" class="md-nav__link">
+    那么我们来看看,在golang中如何写一个工厂
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="什么是结构体" class="md-nav__link">
+    什么是结构体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="接下来介绍接口" class="md-nav__link">
+    接下来介绍接口
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go" title="go实现工厂" class="md-nav__link">
+    go实现工厂
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-appliances" title="package Appliances" class="md-nav__link">
+    package Appliances
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
+      12. 让解析json变得更加得心应手
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
+      13. 在Go中用四种方法实现超时问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
+      14. 执行时间计算(golang)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      基础知识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        基础知识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/ascii/" title="1. ascii" class="md-nav__link">
+      1. ascii
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/endian/" title="2. 理解字节序" class="md-nav__link">
+      2. 理解字节序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
+      3. rabbitMQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#date2019-07-17-2021" title="date:2019-07-17 20:21" class="md-nav__link">
+    date:2019-07-17 20:21
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="什么是工厂模式?" class="md-nav__link">
+    什么是工厂模式?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golang" title="那么我们来看看,在golang中如何写一个工厂" class="md-nav__link">
+    那么我们来看看,在golang中如何写一个工厂
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="什么是结构体" class="md-nav__link">
+    什么是结构体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="接下来介绍接口" class="md-nav__link">
+    接下来介绍接口
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go" title="go实现工厂" class="md-nav__link">
+    go实现工厂
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-appliances" title="package Appliances" class="md-nav__link">
+    package Appliances
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>11. 在golang中使用简单Factory模式</h1>
+                
+                <h2 id="date2019-07-17-2021">date:2019-07-17 20:21<a class="headerlink" href="#date2019-07-17-2021" title="Permanent link">&para;</a></h2>
+<p>你知道什么是类工厂吗?为什么它有用?是否考虑过在Golang中实现一个类工厂，即使Go在本质上不是完全面向对象的?除了令人印象深刻的并发功能之外，您是否对Go中的一些出色特性感到好奇?如果你对这些问题中的任何一个感兴趣，那么继续读下去也许是值得的。本文介绍了在Go中实现工厂设计模式。</p>
+<h3 id="_1">什么是工厂模式?<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>目前在网上已经有很多关于工厂模式的定义了,其实工厂模式的概念非常简单.在oop的环境中,工厂或者类工厂是一种最小化的添加未来代码的设计方式,但是为什么我们需要将未来的代码添加到现有的应用程序中呢?因为这是软件行业的本质, <strong><em>需求永远在变</em></strong></p>
+<p>类工厂通过使用接口和继承来实现面向对象世界中新旧代码之间的解耦。守则将分为三部分:</p>
+<ol>
+<li>核心代码或主代码</li>
+<li>一个类的工厂</li>
+<li>实现相同接口或抽象类的具体类也使用相同的公共函数签名</li>
+</ol>
+<p>核心代码主要与类工厂通信，它向类工厂请求类型。然后类工厂实例化表示该类型的类，并将该类的父接口返回给核心代码。然后核心代码从接口调用函数。这些函数由实现接口的所有类共享，这意味着无论何时核心代码要求不同的类型，相同的函数仍然可以工作。下面是一个面向对象的类工厂的完整示例。</p>
+<p><img alt="" src="https://storage.xueshop.cn/blog/2019-07-17-Class-Factory-Diagram.png" /></p>
+<p>例如，设想一个负责打开家用电器的软件。让我们假设-最初-你被要求支持的器具只是炉子和冰箱。但是一年之后，你也被要求增加对微波的支持。如果您从一开始就没有很好地设计它，那么您将需要更改许多现有代码。但是，如果使用类工厂设计模式，应用程序的核心代码只需要考虑两件事:1-请求特定类型的设备。2-打开电器。其余的由工厂负责。代码流程应该是这样的:</p>
+<div class="codehilite"><pre><span></span>Core Application code:  myAppliance = ApplianceClassFactory.Get(“Oven”)
+
+Class Factory:    return new OvenClass
+
+Core Application code: myAppliance.TurnOn()
+</pre></div>
+
+<h3 id="golang">那么我们来看看,在golang中如何写一个工厂<a class="headerlink" href="#golang" title="Permanent link">&para;</a></h3>
+<p>首先，我需要弄清楚，Go并不是一种完全面向对象的编程语言。这意味着当我在Go中说类工厂时，我并不是指类的工厂，我只是出于习惯使用这个术语。在Go中，它将更像是一个结构体工厂，很快就会说到这一点:</p>
+<p>其次，在用Go编写类工厂之前，需要熟悉该语言的两个重要的知识点，即结构和接口。</p>
+<h4 id="_2">什么是结构体<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>Go结构体与对象是等价的，只是它们要简单得多。结构体可以同时承载变量和函数。结构体内部的变量在结构定义语句中指定，而属于结构的函数在函数签名中标识父结构。</p>
+<p>让我们用一个例子来补充它，假设我们需要一个包含三个变量的结构体:一个整数、一个字符串和一个布尔值:</p>
+<div class="codehilite"><pre><span></span>type exampleStruct struct{
+    num int
+    s string
+    flag bool
+}
+</pre></div>
+
+<p>现在让我们假设有一个printExampleStruct()函数，它属于我们新创建的struct:</p>
+<div class="codehilite"><pre><span></span>func (s exampleStruct) printExampleStruct(){
+    //print the contents of the struct
+   fmt.Printf(&quot;example struct: num = %v, s = %v,  flag = %v&quot;, s.num, s.s, s.flag)
+}
+</pre></div>
+
+<p>要调用和使用结构体，只需先初始化该结构体类型的变量，然后使用它。代码如下:</p>
+<div class="codehilite"><pre><span></span>myStruct := exampleStruct{ 
+num: 5,
+s: &quot;I am a string variable&quot;,
+flag: true,
+}
+
+myStruct.printExampleStruct()
+</pre></div>
+
+<p>当我们把所有这些加起来并打包后，我们的struct示例程序将如下所示:</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;fmt&quot;
+
+type exampleStruct struct{
+    num int
+    s string
+    flag bool
+}
+
+func (s exampleStruct) printExampleStruct(){
+    fmt.Printf(&quot;example struct: num = %v, s = %v,  flag = %v&quot;, s.num, s.s, s.flag)
+}
+
+func main() {
+    myStruct := exampleStruct{ 
+    num: 5,
+    s: &quot;I am a string variable&quot;,
+    flag: true,
+    }
+
+    myStruct.printExampleStruct()
+}
+</pre></div>
+
+<h4 id="_3">接下来介绍接口<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>Go接口在概念上与主流语言(如Java或c#)中的接口相似。实际上，它们是定义一组函数\方法的类型。由于结构就像对象一样，它们通常实现接口。Go的不同之处在于没有特殊的关键字和/或大括号来表示结构“Y”继承了接口“X”。它的工作原理是，如果您的结构包含一个函数，该函数在定义的接口中具有与函数相同的签名，那么您的结构将实现该接口。是的,就是这样!</p>
+<p>接口可以简单地通过以下语法定义:</p>
+<div class="codehilite"><pre><span></span>type myInterface interface {
+    myFunction() float64
+}
+</pre></div>
+
+<p>如前所述，任何实现相同签名功能的struct都被认为是接口的子结构，结构如下:</p>
+<div class="codehilite"><pre><span></span>type myStruct struct{
+    f float64
+}
+
+func (s myStruct)myFunction() float64{
+    return 455.984
+}
+</pre></div>
+
+<p>好了说完interface和struct,我们来说说怎么用go实现工厂</p>
+<h3 id="go">go实现工厂<a class="headerlink" href="#go" title="Permanent link">&para;</a></h3>
+<p>让我们想象一下，我们被要求设计一个程序，它可以与多种类型的设备对话。该程序将启动一个设备或返回特定设备的操作说明。例如，该计划支持的当前设备类型是冰箱和炉子。但是，在将来，我们可能会对其他设备类型有额外的需求。</p>
+<p>为了设计一个好的软件来达到这个目的，我们需要编写我们的程序，当客户要求添加更多的设备时，我们不需要修改任何主代码。这时我们意识到类工厂对于我们的项目来说是一个好主意。</p>
+<p>让我们从核心\main应用程序代码开始，下面是它需要为我们做的:</p>
+<ol>
+<li>询问用户他们喜欢的设备类型</li>
+<li>使用类工厂检索该类型的设备</li>
+<li>打开电器</li>
+<li>显示设备功能的描述</li>
+</ol>
+<p>因此，总的来说，我们需要在核心应用程序代码中实现四个简单的任务。即使第二天又添加了500多个设备类型，这些代码将来也不需要进行任何编辑。现在是时候试试golang了:</p>
+<p>首先，我们需要导入核心代码中使用的包。Go中的包类似于Java中的包或c#中的名称空间，c#是代码的大容器，比类构造高一两步。第一个包表示项目的类工厂，在我的示例中是“ClassFactoryTutorial/ appliance”，第二个包是“fmt”，它处理各种命令行任务。“fmt”类似于Java中的“System”或c#中的“Console”。</p>
+<p>其次，我们编写主函数来实现前面描述的四个任务。下面是代码的样子:</p>
+<div class="codehilite"><pre><span></span>package main
+
+import (
+    &quot;ClassFactoryTutorial/Appliances&quot;
+    &quot;fmt&quot;
+)
+
+func main(){
+    //Request the user to enter the appliance type
+    fmt.Println(&quot;Enter preferred appliance type&quot;)
+
+    //use fmt.scan to retrieve the user&#39;s input
+    var myType int
+    fmt.Scan(&amp;myType)
+
+    //Use the class factory to create an appliance of the requested type
+    myAppliance, err := Appliances.CreateAppliance(myType)
+
+    //if no errors start the appliance then print it&#39;s purpose
+    if err==nil{
+        myAppliance.Start()
+        fmt.Println(myAppliance.GetPurpose())
+    } else {
+        //if error encountered, print the error
+        fmt.Println(err)
+    }
+
+}
+</pre></div>
+
+<p>上面代码片段中使用的“appliance”关键字是我们的类工厂，它只不过是一个包含构建类工厂所需函数的包。</p>
+<p>接下来，让我们在Golang创建我们的电器类工厂</p>
+<p>首先，我们需要定义一个包含任何设备类型所需功能的接口。</p>
+<p>其次，我们需要编写一个函数，返回与从核心代码传递到类工厂的设备类型对应的结构类型(同样，类似于Go中的对象)。</p>
+<h4 id="package-appliances">package Appliances<a class="headerlink" href="#package-appliances" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>//import errors to log errors when they occur
+import &quot;errors&quot;
+
+//The main interface used to describe appliances
+type Appliance interface{
+    Start()
+    GetPurpose() string
+}
+
+//Our appliance types
+const (
+    STOVE = iota
+    FRIDGE
+)
+
+//Function to create the appliances
+func CreateAppliance(t int)(Appliance, error) {
+    //Use a switch case to switch between types, if a type exist then error is nil (null)
+    switch t{
+    case STOVE:
+        return new(Stove),nil
+    case FRIDGE:
+        return new(Fridge),nil
+    default:
+        //if type is invalid, return an error
+        return nil, errors.New(&quot;Invalid Appliance Type&quot;)
+    }
+}
+</pre></div>
+
+<p>CreateAppliance()函数不需要属于任何特定的结构或接口，它只属于“appliance”包。如果您想与Java或c#进行比较，它有点类似于静态方法。</p>
+<p>代码中的设备类型是enum常量，当将“iota”分配给列表中的第一项时，其余项的增量为0。这意味着类型“火炉”将等于0，类型“冰箱”将等于1。</p>
+<p>这样，我们班工厂的主体就完成了。下一步是编写代码来表示我们支持的设备类型，炉子的炉子结构和冰箱的冰箱结构。在技术术语中，我们需要编写结构(再一次，像类)来实现“设备”接口中定义的函数。</p>
+<p>让我们从设备类型开始，我们需要写一段代码:</p>
+<p>定义一个电器类型结构体，“炉子”表示炉子类型，“冰箱”表示冰箱类型
+实现“Start()”和“GetPurpose()”函数。同样，这些是在类工厂“Appliance”接口中定义的函数。通过实现它们，设备类型结构将成为“设备”接口的实现，因此任何处理“设备”接口的代码都将在设备类型结构上工作
+功能已完全定义，让我们跳转到“火炉”结构的代码:</p>
+<div class="codehilite"><pre><span></span>package Appliances
+
+// define a stove struct, the struct contain a string representing the type name
+type Stove struct{
+    typeName string
+}
+
+//The stove struct implements the start() function
+func (sv *Stove)Start(){
+    sv.typeName = &quot; Stove &quot;
+}
+
+//The stove struct implements the GetPurpose() function
+func (sv *Stove)GetPurpose() string{
+    return &quot;I am a &quot; + sv.typeName + &quot; I cook food!!&quot;
+}
+</pre></div>
+
+<p>很直接。</p>
+<p>继续看“Fridge”结构，实现将非常类似:</p>
+<div class="codehilite"><pre><span></span>package Appliances
+
+// define a fridge struct, the struct contain a string representing the type name
+type Fridge struct{
+    typeName string
+}
+
+//The fridge struct implements the start() function
+func (fr *Fridge)Start(){
+     fr.typeName = &quot; Fridge &quot;
+}
+
+//The fridge struct implements the start() function
+func (fr *Fridge)GetPurpose() string{
+    return &quot;I am a &quot; + fr.typeName + &quot; I cool stuff down!!&quot;
+}
+</pre></div>
+
+<p>这样，程序就完成了。下一步是使用它:</p>
+<blockquote>
+<p>➜  factory ./main 
+Enter preferred appliance type
+0
+I am a  Stove  I cook food!!
+➜  factory ./main
+Enter preferred appliance type
+1
+I am a  Fridge  I cool stuff down!!</p>
+</blockquote>
+<p>现在，假设一个星期后，客户回来要求您的软件支持微波炉类型的设备，我们会怎么做?因为我们是围绕类工厂设计应用程序的，所以支持新内容所需的附加功能将相当简单和直接。如果我们要增加对微波的支持，我们需要:</p>
+<p>核心代码(主要功能):不需要更改
+类工厂代码:添加类型“微波”
+添加一个表示微波设备类型的新结构
+下面是类工厂代码的新添加:</p>
+<div class="codehilite"><pre><span></span>//Our appliance types
+const (
+    STOVE = iota
+    FRIDGE
+    //Now we support microwaves
+    MICROWAVE
+)
+
+func CreateAppliance(t int)(Appliance, error) {
+    switch t{
+    case STOVE:
+        return new(Stove),nil
+    case FRIDGE:
+        return new(Fridge),nil
+        //new case added for microwaves
+    case MICROWAVE:
+        return new(Microwave),nil
+    default:
+        return nil, errors.New(&quot;Invalid Appliance Type&quot;)
+    }
+</pre></div>
+
+<p>这是新的结构体:</p>
+<div class="codehilite"><pre><span></span>package Appliances
+
+type Microwave struct{
+    typeName string
+}
+
+func (mr *Microwave)Start(){
+    mr.typeName = &quot; Microwave &quot;
+}
+
+func (mr *Microwave)GetPurpose() string{
+    return &quot;I am a &quot; + mr.typeName + &quot; I heat stuff up!!&quot;
+}
+</pre></div>
+
+<p>讲完这些，我们就到本教程的结尾了。正如您所看到的，从一开始就遵循一个好的设计可以为您在将来省去很多麻烦，并使编码更加高效。像Go这样强大而有趣的语言使它更加简单。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../PHP异常那些事/" title="10. PHP异常那些事" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                10. PHP异常那些事
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                12. 让解析json变得更加得心应手
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

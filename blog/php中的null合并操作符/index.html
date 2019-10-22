@@ -1,0 +1,1448 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
+      
+      
+        <link rel="canonical" href="https://golang.xueshop.cn/blog/php中的null合并操作符/">
+      
+      
+        <meta name="author" content="xueshop">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>8. php中的null合并操作符 - Golang学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#date2019-05-29-1153" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://golang.xueshop.cn" title="Golang学习笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang学习笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                8. php中的null合并操作符
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="介绍" class="md-tabs__link">
+        介绍
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../golang/json/smart-config/" title="Golang" class="md-tabs__link">
+          Golang
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../git有用且不容易记住的命令/" title="Blog" class="md-tabs__link md-tabs__link--active">
+          Blog
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../base/ascii/" title="基础知识" class="md-tabs__link">
+          基础知识
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://golang.xueshop.cn" title="Golang学习笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="介绍" class="md-nav__link">
+      介绍
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Golang
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Golang
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/json/smart-config/" title="1. json" class="md-nav__link">
+      1. json
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      2. 结构体
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        2. 结构体
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/struct/marshal/" title="2.1 解析" class="md-nav__link">
+      2.1 解析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/struct/tag/" title="2.2 标签" class="md-nav__link">
+      2.2 标签
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      3. 反射
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        3. 反射
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/reflect/type/" title="3.1 类型比对" class="md-nav__link">
+      3.1 类型比对
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      4. io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        4. io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
+      4.1 io.Reader和io.Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
+      4.2 bytes.buffer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      5. 并发编程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        5. 并发编程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
+      5.1 利用chan实现timeout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      6. 函数
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        6. 函数
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
+      6.1 函数作为参数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
+      6.2 函数类型申明
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      7. 时间
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        7. 时间
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/time/时间计算/" title="7.1 时间计算" class="md-nav__link">
+      7.1 时间计算
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
+      7.2 ticker and timer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      8. 超时和重试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        8. 超时和重试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/超时和重试/timeout/" title="超时" class="md-nav__link">
+      超时
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
+      并发使用chan还是mutex
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      9. go mod
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-9">
+        9. go mod
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/mod/go-mod/" title="go mod基础" class="md-nav__link">
+      go mod基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      10. 初识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        10. 初识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      11. 设置
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-11">
+        11. 设置
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/设置/gomod/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Blog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
+      1. git有用且不容易记住的命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
+      2. 一些有用的linux命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
+      3. PHP开发中一些小技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
+      4. docker基础知识积累
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
+      5. php常用面试题汇总
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
+      6. php逐步更新的细节
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
+      7. mac下回滚php版本到php7.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        8. php中的null合并操作符
+      </label>
+    
+    <a href="./" title="8. php中的null合并操作符" class="md-nav__link md-nav__link--active">
+      8. php中的null合并操作符
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#date2019-05-29-1153" title="date:2019-05-29 11:53" class="md-nav__link">
+    date:2019-05-29 11:53
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="三元运算符" class="md-nav__link">
+    三元运算符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="更加简短的三目运算表达式" class="md-nav__link">
+    更加简短的三目运算表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="链式三目运算符" class="md-nav__link">
+    链式三目运算符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="空合并运算符" class="md-nav__link">
+    空合并运算符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="空合并操作符在数组上的使用" class="md-nav__link">
+    空合并操作符在数组上的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="链式操作空合并操作符" class="md-nav__link">
+    链式操作空合并操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="空合并分配运算符" class="md-nav__link">
+    空合并分配运算符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="太空操作符" class="md-nav__link">
+    太空操作符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="比较对象" class="md-nav__link">
+    比较对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="排序函数" class="md-nav__link">
+    排序函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
+      9. 短链接服务的设计思路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PHP异常那些事/" title="10. PHP异常那些事" class="md-nav__link">
+      10. PHP异常那些事
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-nav__link">
+      11. 在golang中使用简单Factory模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
+      12. 让解析json变得更加得心应手
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
+      13. 在Go中用四种方法实现超时问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
+      14. 执行时间计算(golang)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      基础知识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        基础知识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/ascii/" title="1. ascii" class="md-nav__link">
+      1. ascii
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/endian/" title="2. 理解字节序" class="md-nav__link">
+      2. 理解字节序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
+      3. rabbitMQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#date2019-05-29-1153" title="date:2019-05-29 11:53" class="md-nav__link">
+    date:2019-05-29 11:53
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="三元运算符" class="md-nav__link">
+    三元运算符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="更加简短的三目运算表达式" class="md-nav__link">
+    更加简短的三目运算表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="链式三目运算符" class="md-nav__link">
+    链式三目运算符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="空合并运算符" class="md-nav__link">
+    空合并运算符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="空合并操作符在数组上的使用" class="md-nav__link">
+    空合并操作符在数组上的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="链式操作空合并操作符" class="md-nav__link">
+    链式操作空合并操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="空合并分配运算符" class="md-nav__link">
+    空合并分配运算符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="太空操作符" class="md-nav__link">
+    太空操作符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="比较对象" class="md-nav__link">
+    比较对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="排序函数" class="md-nav__link">
+    排序函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>8. php中的null合并操作符</h1>
+                
+                <h2 id="date2019-05-29-1153">date:2019-05-29 11:53<a class="headerlink" href="#date2019-05-29-1153" title="Permanent link">&para;</a></h2>
+<p>您可能已经知道PHP中的一些比较运算符。比如三元<code>?:</code>，空合并<code>??</code>以及宇宙飞船的操作符 &lt;=&gt;。但你真的知道它们是如何工作的吗？了解这些运算符会使您更多地使用它们，从而产生更清晰的代码。</p>
+<h2 id="_1">三元运算符<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>三元运算符是为了简化 <code>if {} else {}</code> 结构, 例如我们如下的代码:
+<div class="codehilite"><pre><span></span>if ($condition) {
+    $result = &#39;foo&#39; 
+} else {
+    $result = &#39;bar&#39;
+}
+</pre></div>
+你可以这样写:
+<div class="codehilite"><pre><span></span>$result = $condition ? &quot;foo&quot; : &quot;bar&quot;;
+</pre></div></p>
+<p>如果上面代码中的<code>$condition</code>的值是<code>true</code>, 左边的值就赋值给<code>$result</code>,如果值是<code>false</code>, 右边的值将会用于<code>$condition</code>.</p>
+<p>一个有趣的事实: 三元运算符的名称实际上是指"作用于三个操作数的运算符".运算符是可以通过给出的一或多个值（用编程行话来说，表达式）来产生另一个值（因而整个结构成为一个表达式）的东西。</p>
+<p>运算符可按照其能接受几个值来分组。一元运算符只能接受一个值，例如 !（逻辑取反运算符）或 ++（递增运算符）。 二元运算符可接受两个值，例如熟悉的算术运算符 +（加）和 -（减），大多数 PHP 运算符都是这种。最后是唯一的三元运算符 ? :，可接受三个值；通常就简单称之为“三元运算符”（尽管称之为条件运算符可能更合适）。</p>
+<p>关于这些知识,官方手册是系统的学习这些知识的渠道, <a href="https://www.php.net/manual/zh/language.operators.php">这是地址</a></p>
+<p>回头我们继续三目运算符: 你知道哪些表达式是<code>true</code>, 哪些表达式是<code>false</code>吗?你可以从这里得到答案 <a href="https://www.php.net/manual/zh/types.comparisons.php">这是地址</a></p>
+<p>当条件的计算结果为真时，三元运算符将使用其左边操作数。这可以是字符串、整数、布尔值等。右侧操作数将用于所谓的“错误值”。例如0或“0”、空数组或字符串、空值、未定义或未分配的变量，当然还有false本身。所有这些值都将使三元运算符使用其右手操作数。</p>
+<h2 id="_2">更加简短的三目运算表达式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>从<code>php5.3</code>,你可以省略左侧的操作数,例如:
+<div class="codehilite"><pre><span></span>$result = $initial ?: &#39;default&#39;;
+</pre></div></p>
+<p>在这种情况下，<code>$result</code>的值将是<code>$initial</code>的值，除非<code>$initial</code>的计算结果为<code>false</code>，在这种情况下，将使用字符串<code>default</code>。</p>
+<p>当然你可以将这种场景的代码按照正常的三目运算表达式:
+<div class="codehilite"><pre><span></span>$result = $condition ? $condition : &#39;default&#39;;
+</pre></div></p>
+<p>但是这里特定意义上来说,简化的三目运算表达式,变成了二元运算符.</p>
+<h2 id="_3">链式三目运算符<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>如下的代码,看起来很符合逻辑,但是他在<code>PHP</code>中不能按照常理输出内容.</p>
+<div class="codehilite"><pre><span></span>$firstCondition = $elseCondition = true;
+$result = $firstCondition
+    ? &#39;truth&#39;
+    : $elseCondition
+        ? &#39;elseTrue&#39;
+        : &#39;elseFalse&#39;;
+</pre></div>
+
+<p>原因是PHP中的三元运算符是左相关的，因此以一种非常奇怪的方式进行解析:上面的示例总是首先判断<code>$elsecondition</code>部分，因此即使<code>$firstCondition</code>为true，也不会看到它的输出.</p>
+<p>所以上面的代码输出: <code>elseTrue</code></p>
+<p>关于这一点你可以, <a href="https://stackoverflow.com/questions/20559150/ternary-operator-left-associativity/38231137#38231137">点击进入stackoverflow学习</a></p>
+<p>值得注意的是,在php7.4版本中,官方已经<code>deprecated</code>了不带括号的三目运算,<a href="https://stitcher.io/blog/new-in-php-74#left-associative-ternary-operator-deprecation-rfc">这里是更详实的资料</a></p>
+<h2 id="_4">空合并运算符<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>你以前看过<a href="https://www.php.net/manual/zh/types.comparisons.php">类型比较表</a>吗？从php 7.0开始，可以使用空合并运算符。它类似于三元运算符，但其行为类似于左侧操作数上的ISSET，而不仅仅是使用其布尔值。这使得该运算符对于数组和**未设置变量**时指定默认值特别有用。</p>
+<div class="codehilite"><pre><span></span>$undefined ?? &#39;fallback&#39;; // &#39;fallback&#39;
+
+$unassigned;
+$unassigned ?? &#39;fallback&#39;; // &#39;fallback&#39;
+
+$assigned = &#39;foo&#39;;
+$assigned ?? &#39;fallback&#39;; // &#39;foo&#39;
+
+&#39;&#39; ?? &#39;fallback&#39;; // &#39;&#39;
+&#39;foo&#39; ?? &#39;fallback&#39;; // &#39;foo&#39;
+&#39;0&#39; ?? &#39;fallback&#39;; // &#39;0&#39;
+0 ?? &#39;fallback&#39;; // 0
+false ?? &#39;fallback&#39;; // false
+</pre></div>
+
+<h3 id="_5">空合并操作符在数组上的使用<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>此运算符与数组结合使用时特别有用，因为它的行为类似于<code>isset</code>。这意味着您可以快速检查键的存在，甚至是嵌套键，而无需编写详细的表达式。</p>
+<div class="codehilite"><pre><span></span>$input = [
+    &#39;key&#39; =&gt; &#39;key&#39;,
+    &#39;nested&#39; =&gt; [
+        &#39;key&#39; =&gt; true
+    ]
+];
+
+$input[&#39;key&#39;] ?? &#39;fallback&#39;; // &#39;key&#39;
+$input[&#39;nested&#39;][&#39;key&#39;] ?? &#39;fallback&#39;; // true
+$input[&#39;undefined&#39;] ?? &#39;fallback&#39;; // &#39;fallback&#39;
+$input[&#39;nested&#39;][&#39;undefined&#39;] ?? &#39;fallback&#39;; // &#39;fallback&#39;
+
+null ?? &#39;fallback&#39;; // &#39;fallback&#39;
+</pre></div>
+
+<p>这里举个栗子,上面第一行的表达式<code>$input['key'] ?? 'fallback';</code> 我们比较传统(low)一些的做法是:
+<div class="codehilite"><pre><span></span>$output = isset($input[&#39;key&#39;]) ? $input[&#39;key&#39;] : &#39;fallback&#39;;
+</pre></div></p>
+<p><strong>请注意</strong>，在检查数组键是否存在时，不可能使用简化三元运算符。它将触发错误或返回布尔值，而不是实际的左操作数的值。
+举个栗子:
+<div class="codehilite"><pre><span></span>//特别注意,这里返回的是true而不是key键对应的值
+$output = isset($input[&#39;key&#39;]) ?: &#39;fallback&#39; 
+//这里如果没有key值,将会触发一个 `undefined index` 错误
+$output = $input[&#39;key&#39;] ?: &#39;fallback&#39;;
+</pre></div></p>
+<h3 id="_6">链式操作空合并操作符<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>与三元运算符一样，也可以链接空合并运算符。它的语法比三元的要简单得多。</p>
+<div class="codehilite"><pre><span></span>$input = [
+    &#39;key&#39; =&gt; &#39;key&#39;,
+];
+
+$input[&#39;undefined&#39;] ?? $input[&#39;key&#39;] ?? &#39;fallback&#39;; // &#39;key&#39;
+</pre></div>
+
+<h3 id="_7">空合并分配运算符<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>在php 7,4中，我们可以期待一种更简短的语法，称为“空合并赋值操作符”。
+<div class="codehilite"><pre><span></span>// 这个操作符在7.4中才生效
+
+function (array $parameters = []) {
+    $parameters[&#39;property&#39;] ??= &#39;default&#39;;
+}
+</pre></div>
+在此示例中，$parameters['property']将被设置为“default”，除非它在传递给函数的数组中设置。这相当于使用当前的空合并运算符执行以下操作：</p>
+<div class="codehilite"><pre><span></span>function (array $parameters = []) {
+    $parameters[&#39;property&#39;] = $parameters[&#39;property&#39;] ?? &#39;default&#39;;
+}
+</pre></div>
+
+<h2 id="_8">太空操作符<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>太空船操作符，虽然有一个很特别的名字，但可能非常有用。它是用于比较的运算符。它将始终返回三个值之一：0、-1或1。</p>
+<p>当两个值完全相等时,返回<code>0</code>, 左边的大返回<code>1</code>, 右边的大返回<code>-1</code>.
+举个栗子:
+<div class="codehilite"><pre><span></span>1 &lt;=&gt; 2; // 返回 -1
+</pre></div>
+它还不止这么简单的比较数字,还有其他的,比如:</p>
+<div class="codehilite"><pre><span></span>// 比较字符串
+&#39;a&#39; &lt;=&gt; &#39;z&#39;; // -1
+
+// 数组
+[2, 1] &lt;=&gt; [2, 1]; // 0
+
+// 多维数组
+[[1, 2], [2, 2]] &lt;=&gt; [[1, 2], [1, 2]]; // 1
+
+// 甚至大小写 
+&#39;Z&#39; &lt;=&gt; &#39;z&#39;; // -1
+</pre></div>
+
+<p>奇怪的是，在比较字母大小写时，小写字母被认为是最高的。不过，有一个简单的解释:字符串比较是通过每个字符比较字符来完成的。一旦一个字符不同，就会比较它们的ASCII值。因为在ASCII表中，小写字母排在大写字母之后，所以它们的值更高。</p>
+<h3 id="_9">比较对象<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>其实我感觉对象比较就有些过分了,毕竟对象作为复杂的数据结构,比较的基础是什么?但是这里可以提到一点,下面的做法有时又很有用,如下:</p>
+<p><div class="codehilite"><pre><span></span>$datea=DateTime::createFromFormat(&#39;y-m-d&#39;, &#39;2000-02-01&#39;);
+$dateb=DateTime::createFromFormat(&#39;y-m-d&#39;, &#39;2000-01-01&#39;);
+$datea&lt;=&gt;$dateb；//返回1
+</pre></div>
+当然，比较日期只是一个例子，但仍然是一个非常有用的例子。</p>
+<h3 id="_10">排序函数<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>这个运算符的一个重要用途是对数组进行排序。在PHP中对数组进行排序有很多种方法，其中一些方法允许使用用户定义的排序函数。此函数必须比较两个元素，并根据它们的位置返回1、0或-1。
+<div class="codehilite"><pre><span></span>$array = [5, 1, 6, 3];
+
+usort($array, function ($a, $b) {
+    return $a &lt;=&gt; $b;
+});
+
+// $array = [1, 3, 5, 6];
+</pre></div>
+逆序排列:</p>
+<div class="codehilite"><pre><span></span>usort($array, function ($a, $b) {
+    return -($a &lt;=&gt; $b);
+});
+</pre></div>
+
+<p>好了,至此,php的这些新特性介绍完毕,相信它对你的代码的优雅型有一些提高,谢谢阅读!</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                7. mac下回滚php版本到php7.0
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                9. 短链接服务的设计思路
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

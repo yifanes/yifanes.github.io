@@ -1,0 +1,1385 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
+      
+      
+        <link rel="canonical" href="https://golang.xueshop.cn/blog/PHP异常那些事/">
+      
+      
+        <meta name="author" content="xueshop">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>10. PHP异常那些事 - Golang学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#date-2019-06-06-1638" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://golang.xueshop.cn" title="Golang学习笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang学习笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                10. PHP异常那些事
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="介绍" class="md-tabs__link">
+        介绍
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../golang/json/smart-config/" title="Golang" class="md-tabs__link">
+          Golang
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../git有用且不容易记住的命令/" title="Blog" class="md-tabs__link md-tabs__link--active">
+          Blog
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../base/ascii/" title="基础知识" class="md-tabs__link">
+          基础知识
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://golang.xueshop.cn" title="Golang学习笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="介绍" class="md-nav__link">
+      介绍
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Golang
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Golang
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/json/smart-config/" title="1. json" class="md-nav__link">
+      1. json
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      2. 结构体
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        2. 结构体
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/struct/marshal/" title="2.1 解析" class="md-nav__link">
+      2.1 解析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/struct/tag/" title="2.2 标签" class="md-nav__link">
+      2.2 标签
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      3. 反射
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        3. 反射
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/reflect/type/" title="3.1 类型比对" class="md-nav__link">
+      3.1 类型比对
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      4. io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        4. io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
+      4.1 io.Reader和io.Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
+      4.2 bytes.buffer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      5. 并发编程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        5. 并发编程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
+      5.1 利用chan实现timeout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      6. 函数
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        6. 函数
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
+      6.1 函数作为参数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
+      6.2 函数类型申明
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      7. 时间
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        7. 时间
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/time/时间计算/" title="7.1 时间计算" class="md-nav__link">
+      7.1 时间计算
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
+      7.2 ticker and timer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      8. 超时和重试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        8. 超时和重试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/超时和重试/timeout/" title="超时" class="md-nav__link">
+      超时
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
+      并发使用chan还是mutex
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      9. go mod
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-9">
+        9. go mod
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/mod/go-mod/" title="go mod基础" class="md-nav__link">
+      go mod基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      10. 初识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        10. 初识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      11. 设置
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-11">
+        11. 设置
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/设置/gomod/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Blog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
+      1. git有用且不容易记住的命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
+      2. 一些有用的linux命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
+      3. PHP开发中一些小技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
+      4. docker基础知识积累
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
+      5. php常用面试题汇总
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
+      6. php逐步更新的细节
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
+      7. mac下回滚php版本到php7.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../php中的null合并操作符/" title="8. php中的null合并操作符" class="md-nav__link">
+      8. php中的null合并操作符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
+      9. 短链接服务的设计思路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        10. PHP异常那些事
+      </label>
+    
+    <a href="./" title="10. PHP异常那些事" class="md-nav__link md-nav__link--active">
+      10. PHP异常那些事
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#date-2019-06-06-1638" title="date: 2019-06-06 16:38" class="md-nav__link">
+    date: 2019-06-06 16:38
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="什么是异常" class="md-nav__link">
+    什么是异常
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="异常从哪里来?" class="md-nav__link">
+    异常从哪里来?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="异常应该到哪里去" class="md-nav__link">
+    异常应该到哪里去
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="异常之分门别类" class="md-nav__link">
+    异常之分门别类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="异常和错误的区别和联系" class="md-nav__link">
+    异常和错误的区别和联系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="异常之于业务场景" class="md-nav__link">
+    异常之于业务场景
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#throwablejson" title="特定一类throwable统一输出json" class="md-nav__link">
+    特定一类throwable统一输出json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catch" title="将没有catch的异常介入第三方统计" class="md-nav__link">
+    将没有catch的异常介入第三方统计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-nav__link">
+      11. 在golang中使用简单Factory模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
+      12. 让解析json变得更加得心应手
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
+      13. 在Go中用四种方法实现超时问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
+      14. 执行时间计算(golang)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      基础知识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        基础知识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/ascii/" title="1. ascii" class="md-nav__link">
+      1. ascii
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/endian/" title="2. 理解字节序" class="md-nav__link">
+      2. 理解字节序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
+      3. rabbitMQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#date-2019-06-06-1638" title="date: 2019-06-06 16:38" class="md-nav__link">
+    date: 2019-06-06 16:38
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="什么是异常" class="md-nav__link">
+    什么是异常
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="异常从哪里来?" class="md-nav__link">
+    异常从哪里来?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="异常应该到哪里去" class="md-nav__link">
+    异常应该到哪里去
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="异常之分门别类" class="md-nav__link">
+    异常之分门别类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="异常和错误的区别和联系" class="md-nav__link">
+    异常和错误的区别和联系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="异常之于业务场景" class="md-nav__link">
+    异常之于业务场景
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#throwablejson" title="特定一类throwable统一输出json" class="md-nav__link">
+    特定一类throwable统一输出json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catch" title="将没有catch的异常介入第三方统计" class="md-nav__link">
+    将没有catch的异常介入第三方统计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>10. PHP异常那些事</h1>
+                
+                <h2 id="date-2019-06-06-1638">date: 2019-06-06 16:38<a class="headerlink" href="#date-2019-06-06-1638" title="Permanent link">&para;</a></h2>
+<p>在这篇文章中,我将从头梳理PHP开发中 <code>Exception</code> 这个关键字的周边知识,争取梳理清楚如下的几个问题
+1.什么是异常
+2.异常从哪里来
+3.异常应该到哪里去
+4.异常之分门别类
+5.异常和错误的区别和联系
+6.异常之于业务场景</p>
+<h3 id="_1">什么是异常<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>在我们开始所有解释之前,我么首先举个栗子.
+假设你要按照给定<code>id</code>来查找humans表的用户邮箱,这个功能可以写成这样:</p>
+<div class="codehilite"><pre><span></span><span class="x">function getHumanEmailById($id)</span>
+<span class="x">{</span>
+<span class="x">    return \Humans::whereId($id)-&gt;email;</span>
+<span class="x">}</span>
+</pre></div>
+
+<p>但是这绝对不是一个健壮的代码,一旦用户传递一个不存在的id(数据库不存在),或者传递是压根就不是int型的正整数,程序就会进入: <code>PHP Notice</code> 状态,导致整个程序进入非预期流程,这里的非预期流程可能是个php层的警告,也可能是个<code>fatal error</code>(假设方法的实现还有更加致命的逻辑假设),导致程序异常终止,所以这时候需要这个方法告诉调用方<code>你的参数有误</code>这种信息,这个时候通常我们的做法有两种.
+1.
+<div class="codehilite"><pre><span></span>if (##如果id非法) {return &#39;&#39;;}
+</pre></div>
+2.
+<div class="codehilite"><pre><span></span>if (##如果id非法) {throw new \InvalidArgumentException(&quot;参数非法&quot;);}
+</pre></div></p>
+<p>而第二种做法就是我们讨论的Exception,好了,到这里我们只是讨论清楚了抛出异常的必要性,但是就如上面两个例子看到的,调用方调用完毕这个方法怎么按照你给的信号(throw 出来的exception)做出合理的处理呢?</p>
+<h3 id="_2">异常从哪里来?<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Q:上面说清楚了异常的必要性以及可能性,那么异常从哪里来呢? 
+A:异常来自开发者对整体代码逻辑的非预期结果给出的提示.
+所以简单来说,异常是PHP代码层抛出的.</p>
+<h3 id="_3">异常应该到哪里去<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>上面已经定义了<code>function getHumanEmailById</code>,同时对参数的非法性做了异常的抛出,但是我们不知道异常到哪里去了,我们尝试调用它<code>getHumanEmailById(1)</code>,这里假设id是1的human信息在数据库中已经被删除,看看php执行器返回结果:</p>
+<blockquote>
+<p>Fatal error: Uncaught InvalidArgumentException: 参数非法</p>
+</blockquote>
+<p>这里发现,我们抛出的异常居然变成了<code>Fatal error</code>,所以异常抛出后交给了PHP解释器,解释器没有找到 catch 这个异常的逻辑代码,所以直接fatal error,说明这一点,我们继续修改代码
+<div class="codehilite"><pre><span></span>    try{
+        getHumanEmailById(1);
+    }catch (\Exception $e)
+    {
+        echo $e-&gt;getMessage();
+    }
+</pre></div></p>
+<p>执行结果正常输出: 参数非法
+到此,我们解释清楚了异常应该到哪里去的问题</p>
+<h3 id="_4">异常之分门别类<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>也许你留意到上面的代码没有<code>catch InvalidArgumentException</code>,是因为<code>Exception</code>是<code>InvalidArgumentException</code>的父类,因为异常的类型很多,我们有一些需求确实需要根据不同的异常做不同的事情,例如下面的伪代码:
+<div class="codehilite"><pre><span></span>try {
+    $variable = &#39;string&#39;;
+} catch (MyException $e) {
+    ##todo1
+} catch (YourException $e) {
+    ##todo2
+} catch (OurException $e) {
+    ##todo3
+} catch (Exception $e) {
+    echo &quot;异常信息:&quot; . $e-&gt;getMessage();
+}
+</pre></div>
+如果你想了解更多的异常分类,可以查看<a href="https://www.php.net/manual/zh/spl.exceptions.php">php手册</a>,也可以通过执行 <a href="https://gist.github.com/mlocati/249f07b074a0de339d4d1ca980848e6a">这个脚本</a> 来打印异常分类.</p>
+<h3 id="_5">异常和错误的区别和联系<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>这个主题,我想只有PHP官方php5时代的开发才能解释清楚这一点,通俗的来说,错误可能是不可修复的,当然现在的php7版本已经将error和exception统一了,他们都集成自throwable这个interface.具体的关系如图:
+<img alt="继承关系" src="https://storage.xueshop.cn/ZQZSOED@R7S00S12WG@8B.png" /></p>
+<p>php7一下的话,我们可以尝试将<code>error</code>转为<code>exception</code>,具体实现代码:
+<div class="codehilite"><pre><span></span>protected function registerErrorHandler()
+{
+    set_error_handler(array($this, &#39;handleError&#39;));
+}
+
+public function handleError($level, $message, $file, $line, $context)
+{
+    if (error_reporting() &amp; $level)
+    {
+        throw new ErrorException($message, $level, 0, $file, $line);
+    }
+}
+</pre></div>
+更多是实现方案参照 laravel的<a href="https://github.com/laravel/framework/blob/53fb3c1f0db3fdbc06155ea405f12fcc4379020c/src/Illuminate/Exception/Handler.php#L95">exception\Handler</a></p>
+<h3 id="_6">异常之于业务场景<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h4 id="throwablejson">特定一类throwable统一输出json<a class="headerlink" href="#throwablejson" title="Permanent link">&para;</a></h4>
+<p>最后,我们回归到上面最初的代码,如果human的id是非法的,就抛出了异常,假设这个id恰好是业务前端传递的,我们就需要告诉用户这个id是非法的,明确告诉他非法请求.
+实现的逻辑代码大致为:
+<div class="codehilite"><pre><span></span>        try{
+            getHumanEmailById(1);
+        }catch (\InvalidArgumentException $e)
+        {
+            echo json_encode([
+                &#39;code&#39; =&gt; 444, 
+                &#39;msg&#39; =&gt; &quot;参数id错误: &quot; . $e-&gt;getMessage(), 
+                &#39;data&#39; =&gt; []
+            ]);
+        }
+</pre></div>
+如果这中参数对应的msg想统一起来,且前端提交的参数非常多,都需要这样判断呢? 这里我们可以抽象出有一个类,继承自InvalidArgumentException的类ApiInvalidArgumentException,然后统一在上层捕获这个异常,然后统一输出json格式
+这里的最佳实践可以在laravel中看到影子,大致思路如下:
+1.继承\Illuminate\Foundation\Exceptions\Handler::render($request, Exception <span><span class="MathJax_Preview">e)
+2.ApiInvalidArgumentException类定义toJson方法
+3.拿到</span><script type="math/tex">e)
+2.ApiInvalidArgumentException类定义toJson方法
+3.拿到</script></span>e,特判ApiInvalidArgumentException,return出tojson</p>
+<p>如此对业务代码无侵入,看起来干净且明了</p>
+<h4 id="catch">将没有catch的异常介入第三方统计<a class="headerlink" href="#catch" title="Permanent link">&para;</a></h4>
+<p>线上在所难免的会有一些异常是未捕获的,这时php会将信息直接fatal error,并输出堆栈信息,所以我们可以将这些信息介入第三方,实时发消息给开发者,解决和发现线上问题.
+推荐大家使用sentry作为php异常处理和发现的工具,很强大,目前我们团队线上就在大量使用.</p>
+<h3 id="_7">总结<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>因为我们的业务需要判断和处理太多太多不符合预期的结果了,有时候一个鲁棒性强的代码可能是核心业务代码的2-3倍,这个时候如果我们能够很好的利用<code>exception</code>,既能让代码健壮,又能让健壮性判断可读性高,例如我们可以二次封装if判断,转变为assert断言,然后在断言中抛出异常.现在很多第三方类库,都很好的定义了自己的异常,为的就是健壮和可读性,希望通过这篇文章,大家能够收获一些新的心得体会,也希望你能斧正文章的错误,下篇博客见!</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                9. 短链接服务的设计思路
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                11. 在golang中使用简单Factory模式
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
