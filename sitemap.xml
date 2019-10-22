@@ -86,6 +86,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://golang.xueshop.cn/golang/sort/各种数据的sort方式/</loc>
+     <lastmod>2019-10-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://golang.xueshop.cn/blog/git有用且不容易记住的命令/</loc>
      <lastmod>2019-10-22</lastmod>
      <changefreq>daily</changefreq>
