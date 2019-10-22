@@ -79,6 +79,8 @@ nav:
         - 数据类型转换: golang/初识/数据类型转换.md
       - 11. 设置:
         - 数据类型转换: golang/设置/gomod.md
+      - 12. 排序:
+        - 各种数据的sort方式: golang/sort/各种数据的sort方式.md
   - Blog:
       - 1. git有用且不容易记住的命令: blog/git有用且不容易记住的命令.md
       - 2. 一些有用的linux命令: blog/一些有用的linux命令.md
