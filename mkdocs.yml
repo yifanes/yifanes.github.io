@@ -1,0 +1,100 @@
+site_name: Golang学习笔记
+site_description: 关于Golang学习总的知识和代码片段的积累记录
+site_author: xueshop
+site_url: https://golang.xueshop.cn
+
+theme:
+  name: material
+  palette:
+    primary: 'Indigo'
+    accent: 'Pink'
+  feature:
+    tabs: true
+  font:
+    text: 'Ubuntu'
+    code: 'Ubuntu Mono'
+  language: 'zh'
+
+extra:
+  search:
+    language: 'zh'
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+      #emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      #emoji_generator: !!python/name:pymdownx.emoji.to_png_sprite
+      #emoji_generator: !!python/name:pymdownx.emoji.to_svg_sprite
+      #emoji_generator: !!python/name:pymdownx.emoji.to_awesome
+      #emoji_generator: !!python/name:pymdownx.emoji.to_alt
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+nav:
+  - 介绍: index.md
+  - Golang: 
+      - 1. json: golang/json/smart-config.md
+      - 2. 结构体: 
+        - 2.1 解析: golang/struct/marshal.md
+        - 2.2 标签: golang/struct/tag.md
+      - 3. 反射:
+        - 3.1 类型比对: golang/reflect/type.md
+      - 4. io:
+        - 4.1 io.Reader和io.Writer: golang/io/reader-writer.md
+        - 4.2 bytes.buffer: golang/io/bytes-buffer.md
+      - 5. 并发编程:
+        - 5.1 利用chan实现timeout: golang/concurrent/timeout-by-chan.md
+      - 6. 函数:
+        - 6.1 函数作为参数: golang/函数/把函数存放在数组中.md
+        - 6.2 函数类型申明: golang/函数/函数类型申明.md
+      - 7. 时间:
+        - 7.1 时间计算: golang/time/时间计算.md
+        - 7.2 ticker and timer: golang/time/ticker-timer.md
+      - 8. 超时和重试:
+        - 超时: golang/超时和重试/timeout.md
+        - 并发使用chan还是mutex: golang/超时和重试/chanormutex.md
+      - 9. go mod:
+        - go mod基础: golang/mod/go-mod.md
+      - 10. 初识:
+        - 数据类型转换: golang/初识/数据类型转换.md
+      - 11. 设置:
+        - 数据类型转换: golang/设置/gomod.md
+  - Blog:
+      - 1. git有用且不容易记住的命令: blog/git有用且不容易记住的命令.md
+      - 2. 一些有用的linux命令: blog/一些有用的linux命令.md
+      - 3. PHP开发中一些小技巧: blog/PHP开发中一些小技巧.md
+      - 4. docker基础知识积累: blog/docker基础知识积累.md
+      - 5. php常用面试题汇总: blog/php常用面试题汇总.md
+      - 6. php逐步更新的细节: blog/php逐步更新的细节.md
+      - 7. mac下回滚php版本到php7.0: blog/mac下回滚php版本到php7.0.md
+      - 8. php中的null合并操作符: blog/php中的null合并操作符.md
+      - 9. 短链接服务的设计思路: blog/短链接服务的设计思路.md
+      - 10. PHP异常那些事: blog/PHP异常那些事.md
+      - 11. 在golang中使用简单Factory模式: blog/在golang中使用简单Factory模式.md
+      - 12. 让解析json变得更加得心应手: blog/让解析json变得更加得心应手.md
+      - 13. 在Go中用四种方法实现超时问题: blog/在Go中用四种方法实现超时问题.md
+      - 14. 执行时间计算(golang): blog/执行时间计算(golang).md
+  - 基础知识:
+      - 1. ascii: base/ascii.md
+      - 2. 理解字节序: base/endian.md
+      - 3. rabbitMQ: base/rabbitmq/index.md
