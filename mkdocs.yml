@@ -1,7 +1,7 @@
 site_name: Golang学习笔记
 site_description: 关于Golang学习总的知识和代码片段的积累记录
-site_author: xueshop
-site_url: https://golang.xueshop.cn
+site_author: lemotu
+site_url: https://lemotu.com
 
 theme:
   name: material
