@@ -33,10 +33,6 @@ func readConfig(filename string) (*Config, error) {
 
 #### 定制
 
-
-<!--more-->
-
-
 当然Go JSON 类库还提供了那些我们不能通过简单的配置即可序列号的方式,我们可以通过 `json.Unmarshaler`来定制这些我们的需求:
 
 ```go
@@ -144,4 +140,6 @@ type Url string
 
 在Go 库中,"encoding/json"的接口`Unmarshaler`是一个强大的抽象。它允许拦截复杂JSON对象的解析，并验证或将基础值转换为应用程序所需的形式。
 
-尽管本文是以json为中心的，但标准XML库和领先的第三方YAML库中出现了类似的`Unmarshaler`接口，因此上述技术适用于XML和YAML配置。
+!!! tip
+	尽管本文是以json为中心的，但标准XML库和领先的第三方YAML库中出现了类似的`Unmarshaler`接口，因此上述技术适用于XML和YAML配置。
+
