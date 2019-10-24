@@ -1171,8 +1171,6 @@
 
 <p><code>json.Unmarshal</code>将会return出一个错误提示:  <code>"20 seconds"</code> is not a valid integer, 然后我们就可以将这种判断放在启动<code>load文件</code>而不是出现在运行环境中了.</p>
 <h4 id="_1">定制<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
-<!--more-->
-
 <p>当然Go JSON 类库还提供了那些我们不能通过简单的配置即可序列号的方式,我们可以通过 <code>json.Unmarshaler</code>来定制这些我们的需求:</p>
 <p><div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Unmarshaler</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">UnmarshalJSON</span><span class="p">([]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
@@ -1261,7 +1259,10 @@
 
 <h4 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>在Go 库中,"encoding/json"的接口<code>Unmarshaler</code>是一个强大的抽象。它允许拦截复杂JSON对象的解析，并验证或将基础值转换为应用程序所需的形式。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>尽管本文是以json为中心的，但标准XML库和领先的第三方YAML库中出现了类似的<code>Unmarshaler</code>接口，因此上述技术适用于XML和YAML配置。</p>
+</div>
                 
                   
                 
