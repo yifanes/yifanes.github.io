@@ -25,7 +25,9 @@ func NewRequest() (*http.Response, error)  {
 }
 ```
 
-# post(Content-Type: application/json;)
+
+
+## post(Content-Type: application/json)
 
 **方式设置头信息,设置get参数,设置cookie和GET请求一致,这里不多叙述**
 
@@ -44,6 +46,8 @@ func newPost() (*http.Response, error) {
 }
 ```
 
+
+
 ## post(Content-Type: application/x-www-form-urlencoded)
 
 ```go
@@ -53,6 +57,8 @@ func newPostForm() (*http.Response, error) {
 	return http.Client{}.Do(request)
 }
 ```
+
+
 
 ## 针对response处理
 
@@ -66,6 +72,7 @@ func main() {
 ```
 
 
+## notice
 
 另外针对get和post,golang的http库封装了几个便捷的方法
 
