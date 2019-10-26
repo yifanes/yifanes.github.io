@@ -1,178 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://golang.xueshop.cn/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/json/smart-config/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/json/smart-config/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/struct/marshal/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/struct/marshal/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/struct/tag/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/struct/tag/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/reflect/type/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/reflect/type/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/io/reader-writer/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/io/reader-writer/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/io/bytes-buffer/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/io/bytes-buffer/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/concurrent/timeout-by-chan/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/concurrent/timeout-by-chan/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/函数/把函数存放在数组中/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/函数/把函数存放在数组中/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/函数/函数类型申明/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/函数/函数类型申明/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/time/时间计算/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/time/时间计算/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/time/ticker-timer/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/time/ticker-timer/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/超时和重试/timeout/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/超时和重试/timeout/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/超时和重试/chanormutex/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/超时和重试/chanormutex/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/mod/go-mod/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/mod/go-mod/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/初识/数据类型转换/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/初识/数据类型转换/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/设置/gomod/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/设置/gomod/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/golang/sort/各种数据的sort方式/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/sort/各种数据的sort方式/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/git有用且不容易记住的命令/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/golang/http/get和post/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/一些有用的linux命令/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/git有用且不容易记住的命令/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/PHP开发中一些小技巧/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/一些有用的linux命令/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/docker基础知识积累/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/PHP开发中一些小技巧/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/php常用面试题汇总/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/docker基础知识积累/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/php逐步更新的细节/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/php常用面试题汇总/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/mac下回滚php版本到php7.0/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/php逐步更新的细节/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/php中的null合并操作符/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/mac下回滚php版本到php7.0/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/短链接服务的设计思路/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/php中的null合并操作符/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/PHP异常那些事/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/短链接服务的设计思路/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/在golang中使用简单Factory模式/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/PHP异常那些事/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/让解析json变得更加得心应手/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/在golang中使用简单Factory模式/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/在Go中用四种方法实现超时问题/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/让解析json变得更加得心应手/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/blog/执行时间计算(golang)/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/在Go中用四种方法实现超时问题/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/base/ascii/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/blog/执行时间计算(golang)/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/base/endian/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/base/ascii/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://golang.xueshop.cn/base/rabbitmq/</loc>
-     <lastmod>2019-10-24</lastmod>
+     <loc>https://lemotu.com/base/endian/</loc>
+     <lastmod>2019-10-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://lemotu.com/base/rabbitmq/</loc>
+     <lastmod>2019-10-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
