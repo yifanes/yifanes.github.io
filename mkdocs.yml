@@ -83,6 +83,13 @@ nav:
         - 各种数据的sort方式: golang/sort/各种数据的sort方式.md
       - 13. http:
         - http请求方式: golang/http/get和post.md
+      - 14. goredis:
+        - goredis: golang/redis/goredis.md
+      - 15. runtime:
+        - runtime: golang/runtime/runtime.md
+      - 16. 类型转换:
+        - 类型转换: golang/类型转换/类型转换.md
+
   - Blog:
       - 1. git有用且不容易记住的命令: blog/git有用且不容易记住的命令.md
       - 2. 一些有用的linux命令: blog/一些有用的linux命令.md
@@ -98,6 +105,8 @@ nav:
       - 12. 让解析json变得更加得心应手: blog/让解析json变得更加得心应手.md
       - 13. 在Go中用四种方法实现超时问题: blog/在Go中用四种方法实现超时问题.md
       - 14. 执行时间计算(golang): blog/执行时间计算(golang).md
+      - 15. 让搜狗输入法在mac下用的更加得心应手: blog/sogou输入法+mac.md
+      - 16. 使用golang和cobra构建健壮的命令行工具: blog/使用golang和cobra构建健壮的命令行工具.md
   - 基础知识:
       - 1. ascii: base/ascii.md
       - 2. 理解字节序: base/endian.md
