@@ -13,7 +13,7 @@
         <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
       
       
-        <link rel="canonical" href="https://lemotu.com/golang/设置/gomod/">
+        <link rel="canonical" href="https://lemotu.com/blog/sogou输入法+mac/">
       
       
         <meta name="author" content="lemotu">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
       
-        <title>数据类型转换 - Golang学习笔记</title>
+        <title>15. 让搜狗输入法在mac下用的更加得心应手 - Golang学习笔记</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.0284f74d.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
       
-        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.01803549.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -66,7 +66,7 @@
         <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#go" tabindex="1" class="md-skip">
+      <a href="#mac" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                数据类型转换
+                15. 让搜狗输入法在mac下用的更加得心应手
               
             </span>
           
@@ -170,7 +170,7 @@
         
   <li class="md-tabs__item">
     
-      <a href="../../.." title="介绍" class="md-tabs__link">
+      <a href="../.." title="介绍" class="md-tabs__link">
         介绍
       </a>
     
@@ -182,7 +182,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../json/smart-config/" title="Golang" class="md-tabs__link md-tabs__link--active">
+        <a href="../../golang/json/smart-config/" title="Golang" class="md-tabs__link">
           Golang
         </a>
       
@@ -195,7 +195,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../blog/git有用且不容易记住的命令/" title="Blog" class="md-tabs__link">
+        <a href="../git有用且不容易记住的命令/" title="Blog" class="md-tabs__link md-tabs__link--active">
           Blog
         </a>
       
@@ -208,7 +208,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../base/ascii/" title="基础知识" class="md-tabs__link">
+        <a href="../../base/ascii/" title="基础知识" class="md-tabs__link">
           基础知识
         </a>
       
@@ -245,7 +245,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." title="介绍" class="md-nav__link">
+    <a href="../.." title="介绍" class="md-nav__link">
       介绍
     </a>
   </li>
@@ -255,12 +255,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Golang
@@ -278,7 +276,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../json/smart-config/" title="1. json" class="md-nav__link">
+    <a href="../../golang/json/smart-config/" title="1. json" class="md-nav__link">
       1. json
     </a>
   </li>
@@ -309,7 +307,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../struct/marshal/" title="2.1 解析" class="md-nav__link">
+    <a href="../../golang/struct/marshal/" title="2.1 解析" class="md-nav__link">
       2.1 解析
     </a>
   </li>
@@ -321,7 +319,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../struct/tag/" title="2.2 标签" class="md-nav__link">
+    <a href="../../golang/struct/tag/" title="2.2 标签" class="md-nav__link">
       2.2 标签
     </a>
   </li>
@@ -357,7 +355,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../reflect/type/" title="3.1 类型比对" class="md-nav__link">
+    <a href="../../golang/reflect/type/" title="3.1 类型比对" class="md-nav__link">
       3.1 类型比对
     </a>
   </li>
@@ -393,7 +391,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
+    <a href="../../golang/io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
       4.1 io.Reader和io.Writer
     </a>
   </li>
@@ -405,7 +403,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
+    <a href="../../golang/io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
       4.2 bytes.buffer
     </a>
   </li>
@@ -441,7 +439,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
+    <a href="../../golang/concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
       5.1 利用chan实现timeout
     </a>
   </li>
@@ -477,7 +475,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
+    <a href="../../golang/函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
       6.1 函数作为参数
     </a>
   </li>
@@ -489,7 +487,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
+    <a href="../../golang/函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
       6.2 函数类型申明
     </a>
   </li>
@@ -525,7 +523,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../time/时间计算/" title="7.1 时间计算" class="md-nav__link">
+    <a href="../../golang/time/时间计算/" title="7.1 时间计算" class="md-nav__link">
       7.1 时间计算
     </a>
   </li>
@@ -537,7 +535,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
+    <a href="../../golang/time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
       7.2 ticker and timer
     </a>
   </li>
@@ -573,7 +571,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../超时和重试/timeout/" title="超时" class="md-nav__link">
+    <a href="../../golang/超时和重试/timeout/" title="超时" class="md-nav__link">
       超时
     </a>
   </li>
@@ -585,7 +583,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
+    <a href="../../golang/超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
       并发使用chan还是mutex
     </a>
   </li>
@@ -621,7 +619,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mod/go-mod/" title="go mod基础" class="md-nav__link">
+    <a href="../../golang/mod/go-mod/" title="go mod基础" class="md-nav__link">
       go mod基础
     </a>
   </li>
@@ -657,7 +655,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
+    <a href="../../golang/初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
       数据类型转换
     </a>
   </li>
@@ -672,12 +670,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
     
     <label class="md-nav__link" for="nav-2-11">
       11. 设置
@@ -693,63 +689,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        数据类型转换
-      </label>
-    
-    <a href="./" title="数据类型转换" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../golang/设置/gomod/" title="数据类型转换" class="md-nav__link">
       数据类型转换
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#goproxy" title="设置GOPROXY代理：" class="md-nav__link">
-    设置GOPROXY代理：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goprivategitlabgitee" title="设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：" class="md-nav__link">
-    设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sumdb" title="设置sumdb:" class="md-nav__link">
-    设置sumdb:
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -783,7 +727,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-nav__link">
+    <a href="../../golang/sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-nav__link">
       各种数据的sort方式
     </a>
   </li>
@@ -819,7 +763,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../http/get和post/" title="http请求方式" class="md-nav__link">
+    <a href="../../golang/http/get和post/" title="http请求方式" class="md-nav__link">
       http请求方式
     </a>
   </li>
@@ -855,7 +799,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../redis/goredis/" title="goredis" class="md-nav__link">
+    <a href="../../golang/redis/goredis/" title="goredis" class="md-nav__link">
       goredis
     </a>
   </li>
@@ -891,7 +835,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../runtime/runtime/" title="runtime" class="md-nav__link">
+    <a href="../../golang/runtime/runtime/" title="runtime" class="md-nav__link">
       runtime
     </a>
   </li>
@@ -927,7 +871,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../类型转换/类型转换/" title="类型转换" class="md-nav__link">
+    <a href="../../golang/类型转换/类型转换/" title="类型转换" class="md-nav__link">
       类型转换
     </a>
   </li>
@@ -947,10 +891,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Blog
@@ -968,7 +914,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
+    <a href="../git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
       1. git有用且不容易记住的命令
     </a>
   </li>
@@ -980,7 +926,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
+    <a href="../一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
       2. 一些有用的linux命令
     </a>
   </li>
@@ -992,7 +938,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
+    <a href="../PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
       3. PHP开发中一些小技巧
     </a>
   </li>
@@ -1004,7 +950,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
+    <a href="../docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
       4. docker基础知识积累
     </a>
   </li>
@@ -1016,7 +962,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
+    <a href="../php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
       5. php常用面试题汇总
     </a>
   </li>
@@ -1028,7 +974,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
+    <a href="../php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
       6. php逐步更新的细节
     </a>
   </li>
@@ -1040,7 +986,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
+    <a href="../mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
       7. mac下回滚php版本到php7.0
     </a>
   </li>
@@ -1052,7 +998,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/php中的null合并操作符/" title="8. php中的null合并操作符" class="md-nav__link">
+    <a href="../php中的null合并操作符/" title="8. php中的null合并操作符" class="md-nav__link">
       8. php中的null合并操作符
     </a>
   </li>
@@ -1064,7 +1010,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
+    <a href="../短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
       9. 短链接服务的设计思路
     </a>
   </li>
@@ -1076,7 +1022,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/PHP异常那些事/" title="10. PHP异常那些事" class="md-nav__link">
+    <a href="../PHP异常那些事/" title="10. PHP异常那些事" class="md-nav__link">
       10. PHP异常那些事
     </a>
   </li>
@@ -1088,7 +1034,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-nav__link">
+    <a href="../在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-nav__link">
       11. 在golang中使用简单Factory模式
     </a>
   </li>
@@ -1100,7 +1046,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
+    <a href="../让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
       12. 让解析json变得更加得心应手
     </a>
   </li>
@@ -1112,7 +1058,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
+    <a href="../在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
       13. 在Go中用四种方法实现超时问题
     </a>
   </li>
@@ -1124,7 +1070,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
+    <a href="../执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
       14. 执行时间计算(golang)
     </a>
   </li>
@@ -1134,11 +1080,103 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../../blog/sogou输入法+mac/" title="15. 让搜狗输入法在mac下用的更加得心应手" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        15. 让搜狗输入法在mac下用的更加得心应手
+      </label>
+    
+    <a href="./" title="15. 让搜狗输入法在mac下用的更加得心应手" class="md-nav__link md-nav__link--active">
       15. 让搜狗输入法在mac下用的更加得心应手
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="问题描述:" class="md-nav__link">
+    问题描述:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="中英文切换诡异问题" class="md-nav__link">
+    中英文切换诡异问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="官方不能本土化的定制" class="md-nav__link">
+    官方不能本土化的定制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac-ox" title="无法禁用Mac ox自带的默认输入法" class="md-nav__link">
+    无法禁用Mac ox自带的默认输入法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="解决方法:" class="md-nav__link">
+    解决方法:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="思路:" class="md-nav__link">
+    思路:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="步骤:" class="md-nav__link">
+    步骤:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1148,7 +1186,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../blog/使用golang和cobra构建健壮的命令行工具/" title="16. 使用golang和cobra构建健壮的命令行工具" class="md-nav__link">
+    <a href="../使用golang和cobra构建健壮的命令行工具/" title="16. 使用golang和cobra构建健壮的命令行工具" class="md-nav__link">
       16. 使用golang和cobra构建健壮的命令行工具
     </a>
   </li>
@@ -1184,7 +1222,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../base/ascii/" title="1. ascii" class="md-nav__link">
+    <a href="../../base/ascii/" title="1. ascii" class="md-nav__link">
       1. ascii
     </a>
   </li>
@@ -1196,7 +1234,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../base/endian/" title="2. 理解字节序" class="md-nav__link">
+    <a href="../../base/endian/" title="2. 理解字节序" class="md-nav__link">
       2. 理解字节序
     </a>
   </li>
@@ -1208,7 +1246,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
+    <a href="../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
       3. rabbitMQ
     </a>
   </li>
@@ -1240,23 +1278,63 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#goproxy" title="设置GOPROXY代理：" class="md-nav__link">
-    设置GOPROXY代理：
+  <a href="#_1" title="问题描述:" class="md-nav__link">
+    问题描述:
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="中英文切换诡异问题" class="md-nav__link">
+    中英文切换诡异问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="官方不能本土化的定制" class="md-nav__link">
+    官方不能本土化的定制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac-ox" title="无法禁用Mac ox自带的默认输入法" class="md-nav__link">
+    无法禁用Mac ox自带的默认输入法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#goprivategitlabgitee" title="设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：" class="md-nav__link">
-    设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：
+  <a href="#_4" title="解决方法:" class="md-nav__link">
+    解决方法:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="思路:" class="md-nav__link">
+    思路:
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sumdb" title="设置sumdb:" class="md-nav__link">
-    设置sumdb:
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="步骤:" class="md-nav__link">
+    步骤:
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1277,20 +1355,51 @@
               
                 
                 
-                <h1 id="go">go代理设置<a class="headerlink" href="#go" title="Permanent link">&para;</a></h1>
-<p>在Go 1.13中，我们可以通过<code>GOPROXY</code>来控制代理，以及通过<code>GOPRIVATE</code>控制私有库不走代理。</p>
-<h2 id="goproxy">设置<code>GOPROXY</code>代理：<a class="headerlink" href="#goproxy" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="err">go</span> <span class="err">env</span> <span class="err">-w</span> <span class="err">GOPROXY=https://goproxy.cn,direct</span>
+                <h1 id="mac">让搜狗输入法在mac下用的更加得心应手<a class="headerlink" href="#mac" title="Permanent link">&para;</a></h1>
+<h2 id="_1">问题描述:<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">中英文切换诡异问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>由于个人长久使用搜狗输入法,熟悉了一些配置,同时也用账号同步了历史以来的词汇,所以对于我来说,搜狗输入法真香,但是在mac ox环境下, <code>^ + 空格</code> 用的总是那么不舒心,偶尔的自动切换到系统默认的输入法,偶尔的切换不过来中文,使得中文-&gt;英文,英文-&gt;中文,这两个操作有些烦躁.</p>
+<h3 id="_3">官方不能本土化的定制<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>例如:
+搜狗有符号设置: 可以在知乎页面中使用「」代替引号
+再例如:
+在中文输入法下,使用英文标点,且可以设置App清单
+再例如:
+定制化的皮肤</p>
+<h3 id="mac-ox">无法禁用Mac ox自带的默认输入法<a class="headerlink" href="#mac-ox" title="Permanent link">&para;</a></h3>
+<p>可能这也是遇到问题的最根本原因,所以这篇文章主要说明的问题就是:如何<code>解决掉</code>自带的输入法.</p>
+<h2 id="_4">解决方法:<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">思路:<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>其实思路很简单,mac ox上没法禁用自带的输入法,而这个输入法是由一个plist文件配置,但是这个配置文件是系统配置文件,所以需要关闭SIP(系统完整性保护),然后再修改plist配置文件</p>
+<h3 id="_6">步骤:<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ol>
+<li>关闭SIP</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">(</span><span class="m">1</span><span class="o">)</span>重启OSX系统，然后按住Command+R
+
+<span class="o">(</span><span class="m">2</span><span class="o">)</span>出现界面之后，选择Utilities menu中Terminal
+
+<span class="o">(</span><span class="m">3</span><span class="o">)</span>在Terminal中输入csrutil disable 关闭SIP<span class="o">(</span>csrutil enable打开SIP<span class="o">)</span>
+
+<span class="o">(</span><span class="m">4</span><span class="o">)</span>重启reboot OSX
 </pre></div>
 
-<h2 id="goprivategitlabgitee">设置<code>GOPRIVATE</code>来跳过私有库，比如常用的<code>Gitlab</code>或<code>Gitee</code>，中间使用逗号分隔：<a class="headerlink" href="#goprivategitlabgitee" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOPRIVATE</span><span class="o">=*</span><span class="p">.</span><span class="nx">gitlab</span><span class="p">.</span><span class="nx">com</span><span class="p">,</span><span class="o">*</span><span class="p">.</span><span class="nx">gitee</span><span class="p">.</span><span class="nx">com</span>
+<ol>
+<li>下载plist edit:</li>
+</ol>
+<p>这个只要输入关键字,百度有很多渠道下载,不再赘述</p>
+<ol>
+<li>修改com.apple.HIToolbox.plist</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">(</span><span class="m">1</span><span class="o">)</span>open ~/Library/Preferences/
+<span class="o">(</span><span class="m">2</span><span class="o">)</span>找到<span class="sb">`</span>com.apple.HIToolbox.plist<span class="sb">`</span>文件,右键用plistEdit打开
 </pre></div>
 
-<h2 id="sumdb">设置sumdb:<a class="headerlink" href="#sumdb" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOSUMDB</span><span class="o">=</span><span class="nx">off</span> <span class="c1">// 关闭</span>
-<span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOSUMDB</span><span class="o">=</span><span class="s2">&quot;sum.golang.google.cn&quot;</span> <span class="c1">//开放给zh-CN的</span>
-</pre></div>
+<ol>
+<li>修改input属性(如下图):</li>
+</ol>
+<p><img alt="" src="https://storage.xueshop.cn/blog/2019-11-06-KadIB6.png" /></p>
+<p>删除掉非sogou相关的序列,搞定!</p>
                 
                   
                 
@@ -1311,7 +1420,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../初识/数据类型转换/" title="数据类型转换" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1320,19 +1429,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                数据类型转换
+                14. 执行时间计算(golang)
               </span>
             </div>
           </a>
         
         
-          <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../使用golang和cobra构建健壮的命令行工具/" title="16. 使用golang和cobra构建健壮的命令行工具" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                各种数据的sort方式
+                16. 使用golang和cobra构建健壮的命令行工具
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -1360,12 +1469,12 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/application.245445c6.js"></script>
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
       
         
         
           
-          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
           
             
               
@@ -1375,7 +1484,7 @@
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
     
   </body>

@@ -13,7 +13,7 @@
         <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
       
       
-        <link rel="canonical" href="https://lemotu.com/golang/设置/gomod/">
+        <link rel="canonical" href="https://lemotu.com/golang/redis/goredis/">
       
       
         <meta name="author" content="lemotu">
@@ -42,7 +42,7 @@
     
     
       
-        <title>数据类型转换 - Golang学习笔记</title>
+        <title>goredis - Golang学习笔记</title>
       
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#go" tabindex="1" class="md-skip">
+      <a href="#go-redis" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                数据类型转换
+                goredis
               
             </span>
           
@@ -672,12 +672,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
     
     <label class="md-nav__link" for="nav-2-11">
       11. 设置
@@ -693,63 +691,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        数据类型转换
-      </label>
-    
-    <a href="./" title="数据类型转换" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../设置/gomod/" title="数据类型转换" class="md-nav__link">
       数据类型转换
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#goproxy" title="设置GOPROXY代理：" class="md-nav__link">
-    设置GOPROXY代理：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goprivategitlabgitee" title="设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：" class="md-nav__link">
-    设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sumdb" title="设置sumdb:" class="md-nav__link">
-    设置sumdb:
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -834,10 +780,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-14" type="checkbox" id="nav-2-14">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-14" type="checkbox" id="nav-2-14" checked>
     
     <label class="md-nav__link" for="nav-2-14">
       14. goredis
@@ -853,11 +801,49 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../redis/goredis/" title="goredis" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        goredis
+      </label>
+    
+    <a href="./" title="goredis" class="md-nav__link md-nav__link--active">
       goredis
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redis-updateset" title="redis 针对update或者set之类的,通常返回 影响数" class="md-nav__link">
+    redis 针对update或者set之类的,通常返回 影响数
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1240,22 +1226,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#goproxy" title="设置GOPROXY代理：" class="md-nav__link">
-    设置GOPROXY代理：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goprivategitlabgitee" title="设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：" class="md-nav__link">
-    设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sumdb" title="设置sumdb:" class="md-nav__link">
-    设置sumdb:
+  <a href="#redis-updateset" title="redis 针对update或者set之类的,通常返回 影响数" class="md-nav__link">
+    redis 针对update或者set之类的,通常返回 影响数
   </a>
   
 </li>
@@ -1277,20 +1249,17 @@
               
                 
                 
-                <h1 id="go">go代理设置<a class="headerlink" href="#go" title="Permanent link">&para;</a></h1>
-<p>在Go 1.13中，我们可以通过<code>GOPROXY</code>来控制代理，以及通过<code>GOPRIVATE</code>控制私有库不走代理。</p>
-<h2 id="goproxy">设置<code>GOPROXY</code>代理：<a class="headerlink" href="#goproxy" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="err">go</span> <span class="err">env</span> <span class="err">-w</span> <span class="err">GOPROXY=https://goproxy.cn,direct</span>
-</pre></div>
-
-<h2 id="goprivategitlabgitee">设置<code>GOPRIVATE</code>来跳过私有库，比如常用的<code>Gitlab</code>或<code>Gitee</code>，中间使用逗号分隔：<a class="headerlink" href="#goprivategitlabgitee" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOPRIVATE</span><span class="o">=*</span><span class="p">.</span><span class="nx">gitlab</span><span class="p">.</span><span class="nx">com</span><span class="p">,</span><span class="o">*</span><span class="p">.</span><span class="nx">gitee</span><span class="p">.</span><span class="nx">com</span>
-</pre></div>
-
-<h2 id="sumdb">设置sumdb:<a class="headerlink" href="#sumdb" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOSUMDB</span><span class="o">=</span><span class="nx">off</span> <span class="c1">// 关闭</span>
-<span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOSUMDB</span><span class="o">=</span><span class="s2">&quot;sum.golang.google.cn&quot;</span> <span class="c1">//开放给zh-CN的</span>
-</pre></div>
+                <h1 id="go-redis">go redis 关于类型的转换的一写注意点<a class="headerlink" href="#go-redis" title="Permanent link">&para;</a></h1>
+<h2 id="redis-updateset">redis 针对update或者set之类的,通常返回 影响数<a class="headerlink" href="#redis-updateset" title="Permanent link">&para;</a></h2>
+<p>127.0.0.1:6379&gt; SETNX nxkey val
+(integer) 0</p>
+<p>这类情况,redis.SetNX(nxkey, 1, 0).Result()</p>
+<p>更具result返回的结果类型来判断(goredis已经做好了类型转换)</p>
+<p>例如: </p>
+<p>127.0.0.1:6379&gt; CONFIG GET timeout
+1) "timeout"
+2) "0"</p>
+<p>redis.ConfigGet("time").Result() 返回[]interface{}, 这个时候我们转换为:[]string</p>
                 
                   
                 
@@ -1311,7 +1280,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../初识/数据类型转换/" title="数据类型转换" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../http/get和post/" title="http请求方式" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1320,19 +1289,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                数据类型转换
+                http请求方式
               </span>
             </div>
           </a>
         
         
-          <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../runtime/runtime/" title="runtime" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                各种数据的sort方式
+                runtime
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

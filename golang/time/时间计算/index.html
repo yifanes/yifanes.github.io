@@ -567,6 +567,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#format" title="时间格式化format" class="md-nav__link">
+    时间格式化format
+  </a>
+  
+</li>
+      
       
       
       
@@ -823,6 +830,114 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-14" type="checkbox" id="nav-2-14">
+    
+    <label class="md-nav__link" for="nav-2-14">
+      14. goredis
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-14">
+        14. goredis
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../redis/goredis/" title="goredis" class="md-nav__link">
+      goredis
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-15" type="checkbox" id="nav-2-15">
+    
+    <label class="md-nav__link" for="nav-2-15">
+      15. runtime
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-15">
+        15. runtime
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../runtime/runtime/" title="runtime" class="md-nav__link">
+      runtime
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-16" type="checkbox" id="nav-2-16">
+    
+    <label class="md-nav__link" for="nav-2-16">
+      16. 类型转换
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-16">
+        16. 类型转换
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../类型转换/类型转换/" title="类型转换" class="md-nav__link">
+      类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1015,6 +1130,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/sogou输入法+mac/" title="15. 让搜狗输入法在mac下用的更加得心应手" class="md-nav__link">
+      15. 让搜狗输入法在mac下用的更加得心应手
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../blog/使用golang和cobra构建健壮的命令行工具/" title="16. 使用golang和cobra构建健壮的命令行工具" class="md-nav__link">
+      16. 使用golang和cobra构建健壮的命令行工具
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1114,6 +1253,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#format" title="时间格式化format" class="md-nav__link">
+    时间格式化format
+  </a>
+  
+</li>
+      
       
       
       
@@ -1134,17 +1280,13 @@
                 <h1 id="_1">时间计算相关的片段代码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="duration">将字面量的数字转换为Duration<a class="headerlink" href="#duration" title="Permanent link">&para;</a></h2>
 <p>1.通过time.ParseDuration()</p>
-<blockquote>
-<div class="codehilite"><pre><span></span><span class="nx">time</span><span class="p">.</span><span class="nx">ParseDuration</span><span class="p">(</span><span class="s">&quot;1h1m1s&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nx">time</span><span class="p">.</span><span class="nx">ParseDuration</span><span class="p">(</span><span class="s">&quot;1h1m1s&quot;</span><span class="p">)</span> <span class="c1">//int64(Duration)</span>
 </pre></div>
 
-</blockquote>
 <p>2.如果是数字直接转</p>
-<blockquote>
-<div class="codehilite"><pre><span></span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">(</span><span class="o">-</span><span class="mi">120</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span>
+<div class="codehilite"><pre><span></span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">(</span><span class="o">-</span><span class="mi">120</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">second</span> <span class="c1">//这里只是个类型转换而已</span>
 </pre></div>
 
-</blockquote>
 <h2 id="_2">时间相加减<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>1.time.Now().Add()</p>
 <blockquote>
@@ -1154,6 +1296,10 @@
 <blockquote>
 <p>接受time类型的参数,返回Duration类型的结果</p>
 </blockquote>
+<h2 id="format">时间格式化format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">Format</span><span class="p">(</span><span class="s">&quot;2006-01-02 15:04:05&quot;</span><span class="p">)</span> <span class="c1">//返回strin</span>
+<span class="nx">now</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span> <span class="o">*</span> <span class="mi">1</span><span class="p">).</span><span class="nx">Format</span><span class="p">(</span><span class="s">&quot;2006-01-02 15:04:05&quot;</span><span class="p">)</span><span class="c1">//string</span>
+</pre></div>
                 
                   
                 

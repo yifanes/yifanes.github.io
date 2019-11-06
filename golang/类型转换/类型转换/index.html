@@ -13,7 +13,7 @@
         <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
       
       
-        <link rel="canonical" href="https://lemotu.com/golang/设置/gomod/">
+        <link rel="canonical" href="https://lemotu.com/golang/类型转换/类型转换/">
       
       
         <meta name="author" content="lemotu">
@@ -42,7 +42,7 @@
     
     
       
-        <title>数据类型转换 - Golang学习笔记</title>
+        <title>类型转换 - Golang学习笔记</title>
       
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#go" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                数据类型转换
+                类型转换
               
             </span>
           
@@ -672,12 +672,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
     
     <label class="md-nav__link" for="nav-2-11">
       11. 设置
@@ -693,63 +691,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        数据类型转换
-      </label>
-    
-    <a href="./" title="数据类型转换" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../设置/gomod/" title="数据类型转换" class="md-nav__link">
       数据类型转换
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#goproxy" title="设置GOPROXY代理：" class="md-nav__link">
-    设置GOPROXY代理：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goprivategitlabgitee" title="设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：" class="md-nav__link">
-    设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sumdb" title="设置sumdb:" class="md-nav__link">
-    设置sumdb:
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -906,10 +852,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-16" type="checkbox" id="nav-2-16">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-16" type="checkbox" id="nav-2-16" checked>
     
     <label class="md-nav__link" for="nav-2-16">
       16. 类型转换
@@ -925,11 +873,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../类型转换/类型转换/" title="类型转换" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="类型转换" class="md-nav__link md-nav__link--active">
       类型转换
     </a>
+    
   </li>
 
         
@@ -1236,36 +1193,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#goproxy" title="设置GOPROXY代理：" class="md-nav__link">
-    设置GOPROXY代理：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goprivategitlabgitee" title="设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：" class="md-nav__link">
-    设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sumdb" title="设置sumdb:" class="md-nav__link">
-    设置sumdb:
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1277,19 +1204,21 @@
               
                 
                 
-                <h1 id="go">go代理设置<a class="headerlink" href="#go" title="Permanent link">&para;</a></h1>
-<p>在Go 1.13中，我们可以通过<code>GOPROXY</code>来控制代理，以及通过<code>GOPRIVATE</code>控制私有库不走代理。</p>
-<h2 id="goproxy">设置<code>GOPROXY</code>代理：<a class="headerlink" href="#goproxy" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="err">go</span> <span class="err">env</span> <span class="err">-w</span> <span class="err">GOPROXY=https://goproxy.cn,direct</span>
-</pre></div>
+                <h1 id="_1">类型转换<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><span class="nx">t</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span>
+    <span class="s">&quot;zero&quot;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span>
+    <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span>
+    <span class="kd">struct</span><span class="p">{</span> <span class="nx">X</span><span class="p">,</span> <span class="nx">Y</span> <span class="kt">int</span> <span class="p">}{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
 
-<h2 id="goprivategitlabgitee">设置<code>GOPRIVATE</code>来跳过私有库，比如常用的<code>Gitlab</code>或<code>Gitee</code>，中间使用逗号分隔：<a class="headerlink" href="#goprivategitlabgitee" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOPRIVATE</span><span class="o">=*</span><span class="p">.</span><span class="nx">gitlab</span><span class="p">.</span><span class="nx">com</span><span class="p">,</span><span class="o">*</span><span class="p">.</span><span class="nx">gitee</span><span class="p">.</span><span class="nx">com</span>
-</pre></div>
-
-<h2 id="sumdb">设置sumdb:<a class="headerlink" href="#sumdb" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOSUMDB</span><span class="o">=</span><span class="nx">off</span> <span class="c1">// 关闭</span>
-<span class="nx">go</span> <span class="nx">env</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">GOSUMDB</span><span class="o">=</span><span class="s2">&quot;sum.golang.google.cn&quot;</span> <span class="c1">//开放给zh-CN的</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">t</span><span class="p">))</span>
+<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">t</span> <span class="p">{</span>
+    <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprint</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%q\n&quot;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
 </pre></div>
                 
                   
@@ -1311,7 +1240,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../初识/数据类型转换/" title="数据类型转换" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../runtime/runtime/" title="runtime" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1320,19 +1249,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                数据类型转换
+                runtime
               </span>
             </div>
           </a>
         
         
-          <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../../blog/git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                各种数据的sort方式
+                1. git有用且不容易记住的命令
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
