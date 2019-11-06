@@ -8,6 +8,8 @@ cd /tmp
 echo "克隆yifanes.github.io仓库"
 git clone git@github.com:yifanes/yifanes.github.io.git
 cd yifanes.github.io
+git config --local user.name yifanes
+git config --local user.email yifanes@qq.com
 echo "拷贝文件"
 cp -r /Users/zhangxianyou/study/golang/golang-book/site/* /tmp/yifanes.github.io/
 git stage -A
