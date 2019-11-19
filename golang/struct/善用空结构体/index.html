@@ -13,7 +13,7 @@
         <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
       
       
-        <link rel="canonical" href="https://lemotu.com/golang/http/get和post/">
+        <link rel="canonical" href="https://lemotu.com/golang/struct/善用空结构体/">
       
       
         <meta name="author" content="lemotu">
@@ -42,7 +42,7 @@
     
     
       
-        <title>http请求方式 - Golang学习笔记</title>
+        <title>善用空结构体 - Golang学习笔记</title>
       
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#http-clientgetpost" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                http请求方式
+                善用空结构体
               
             </span>
           
@@ -309,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../struct/marshal/" title="2.1 解析" class="md-nav__link">
+    <a href="../marshal/" title="2.1 解析" class="md-nav__link">
       2.1 解析
     </a>
   </li>
@@ -321,7 +321,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../struct/tag/" title="2.2 标签" class="md-nav__link">
+    <a href="../tag/" title="2.2 标签" class="md-nav__link">
       2.2 标签
     </a>
   </li>
@@ -744,12 +744,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-13" type="checkbox" id="nav-2-13" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-13" type="checkbox" id="nav-2-13">
     
     <label class="md-nav__link" for="nav-2-13">
       13. http
@@ -765,77 +763,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        http请求方式
-      </label>
-    
-    <a href="./" title="http请求方式" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../http/get和post/" title="http请求方式" class="md-nav__link">
       http请求方式
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#getencodecookie" title="GET(带encode参数,带头,带cookie)" class="md-nav__link">
-    GET(带encode参数,带头,带cookie)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#postcontent-type-applicationjson" title="post(Content-Type: application/json)" class="md-nav__link">
-    post(Content-Type: application/json)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#postcontent-type-applicationx-www-form-urlencoded" title="post(Content-Type: application/x-www-form-urlencoded)" class="md-nav__link">
-    post(Content-Type: application/x-www-form-urlencoded)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#response" title="针对response处理" class="md-nav__link">
-    针对response处理
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notice" title="notice" class="md-nav__link">
-    notice
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1016,10 +948,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-18" type="checkbox" id="nav-2-18">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-18" type="checkbox" id="nav-2-18" checked>
     
     <label class="md-nav__link" for="nav-2-18">
       18. struct
@@ -1035,11 +969,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../struct/善用空结构体/" title="善用空结构体" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="善用空结构体" class="md-nav__link md-nav__link--active">
       善用空结构体
     </a>
+    
   </li>
 
         
@@ -1346,50 +1289,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#getencodecookie" title="GET(带encode参数,带头,带cookie)" class="md-nav__link">
-    GET(带encode参数,带头,带cookie)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#postcontent-type-applicationjson" title="post(Content-Type: application/json)" class="md-nav__link">
-    post(Content-Type: application/json)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#postcontent-type-applicationx-www-form-urlencoded" title="post(Content-Type: application/x-www-form-urlencoded)" class="md-nav__link">
-    post(Content-Type: application/x-www-form-urlencoded)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#response" title="针对response处理" class="md-nav__link">
-    针对response处理
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notice" title="notice" class="md-nav__link">
-    notice
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1401,69 +1300,34 @@
               
                 
                 
-                <h1 id="http-clientgetpost">http client实现GET和POST请求<a class="headerlink" href="#http-clientgetpost" title="Permanent link">&para;</a></h1>
-<h2 id="getencodecookie">GET(带encode参数,带头,带cookie)<a class="headerlink" href="#getencodecookie" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="c1">//http get</span>
-<span class="kd">func</span> <span class="nx">NewRequest</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>  <span class="p">{</span>
-  <span class="c1">//这里注意第三个参数,实现了io.Reader</span>
-    <span class="nx">request</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">NewRequest</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodGet</span><span class="p">,</span> <span class="s">&quot;baidu.com&quot;</span><span class="p">,</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">))</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;new request error!&quot;</span><span class="p">)</span>
+                <h1 id="_1">善用空结构体<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>空结构体本身不占用系统内存,作为set来使用,利用ok特性可以解决好多问题</p>
+<div class="codehilite"><pre><span></span><span class="nx">set</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kd">struct</span><span class="p">{})</span>
+<span class="nx">set</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="nx">set</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+
+<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">set</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+
+<p>用o(1)的复杂度,解决o(n)</p>
+<p>将slice 转化为 map[string]struct{}</p>
+<div class="codehilite"><pre><span></span><span class="c1">//slice 求diff</span>
+<span class="kd">func</span> <span class="nx">difference</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+    <span class="nx">mb</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">struct</span><span class="p">{},</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">b</span> <span class="p">{</span>
+        <span class="nx">mb</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
     <span class="p">}</span>
-  <span class="c1">//这里是拼接参数,并且encode</span>
-    <span class="nx">query</span> <span class="o">:=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Query</span><span class="p">()</span>
-    <span class="nx">query</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="s">&quot;aaa&quot;</span><span class="p">,</span> <span class="s">&quot;bbb&quot;</span><span class="p">)</span>
-    <span class="nx">request</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">RawQuery</span> <span class="p">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">Encode</span><span class="p">()</span>
-  <span class="c1">//这里是添加头</span>
-    <span class="nx">request</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="s">&quot;aaa&quot;</span><span class="p">,</span> <span class="s">&quot;bbbb&quot;</span><span class="p">)</span>
-  <span class="c1">//这里添加cookie</span>
-  <span class="nx">request</span><span class="p">.</span><span class="nx">AddCookie</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span><span class="s">&quot;seesionId&quot;</span><span class="p">,</span> <span class="nx">Value</span><span class="p">:</span><span class="s">&quot;seesion val&quot;</span><span class="p">})</span>
-  <span class="c1">//实例化client客户端</span>
-    <span class="nx">client</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{}</span>
-  <span class="c1">//发起request请求</span>
-    <span class="k">return</span> <span class="nx">client</span><span class="p">.</span><span class="nx">Do</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-<h2 id="postcontent-type-applicationjson">post(Content-Type: application/json)<a class="headerlink" href="#postcontent-type-applicationjson" title="Permanent link">&para;</a></h2>
-<p><strong>方式设置头信息,设置get参数,设置cookie和GET请求一致,这里不多叙述</strong></p>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">newPost</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">stuStruct</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
-        <span class="nx">Name</span> <span class="kt">string</span>
-        <span class="nx">Id</span> <span class="kt">int</span>
-    <span class="p">}{</span><span class="nx">Name</span><span class="p">:</span><span class="s">&quot;tet&quot;</span><span class="p">,</span> <span class="nx">Id</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-    <span class="nx">stuJson</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="nx">stuStruct</span><span class="p">)</span>
-    <span class="nx">request</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">NewRequest</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodPost</span><span class="p">,</span> <span class="s">&quot;baidu.com&quot;</span><span class="p">,</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">stuJson</span><span class="p">)))</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;new request error!&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">diff</span> <span class="p">[]</span><span class="kt">string</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">mb</span><span class="p">[</span><span class="nx">x</span><span class="p">];</span> <span class="p">!</span><span class="nx">found</span> <span class="p">{</span>
+            <span class="nx">diff</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">diff</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{}.</span><span class="nx">Do</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">diff</span>
 <span class="p">}</span>
 </pre></div>
-
-<h2 id="postcontent-type-applicationx-www-form-urlencoded">post(Content-Type: application/x-www-form-urlencoded)<a class="headerlink" href="#postcontent-type-applicationx-www-form-urlencoded" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">newPostForm</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">formMap</span> <span class="o">:=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">Values</span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;b&quot;</span><span class="p">}}</span>
-    <span class="nx">request</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">NewRequest</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodPost</span><span class="p">,</span> <span class="s">&quot;baidu.com&quot;</span><span class="p">,</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">formMap</span><span class="p">.</span><span class="nx">Encode</span><span class="p">()))</span>
-    <span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{}.</span><span class="nx">Do</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-<h2 id="response">针对response处理<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">response</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">NewGet</span><span class="p">()</span>
-    <span class="nx">_</span> <span class="p">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-    <span class="nx">body</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-<h2 id="notice">notice<a class="headerlink" href="#notice" title="Permanent link">&para;</a></h2>
-<p>另外针对get和post,golang的http库封装了几个便捷的方法</p>
-<blockquote>
-<p>http.Get</p>
-<p>http.Post</p>
-</blockquote>
                 
                   
                 
@@ -1484,7 +1348,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../slice/merge/" title="merge" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1493,19 +1357,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                各种数据的sort方式
+                merge
               </span>
             </div>
           </a>
         
         
-          <a href="../../redis/goredis/" title="goredis" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../../blog/git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                goredis
+                1. git有用且不容易记住的命令
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
