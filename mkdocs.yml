@@ -89,6 +89,12 @@ nav:
         - runtime: golang/runtime/runtime.md
       - 16. 类型转换:
         - 类型转换: golang/类型转换/类型转换.md
+      - 17. slice:
+        - append: golang/slice/append.md
+        - in: golang/slice/in.md
+        - merge: golang/slice/merge.md
+      - 18. struct:
+        - 善用空结构体: golang/struct/善用空结构体.md
 
   - Blog:
       - 1. git有用且不容易记住的命令: blog/git有用且不容易记住的命令.md
