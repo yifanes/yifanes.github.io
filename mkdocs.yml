@@ -77,6 +77,7 @@ nav:
         - go mod基础: golang/mod/go-mod.md
       - 10. 初识:
         - 数据类型转换: golang/初识/数据类型转换.md
+        - 静态变量: golang/初识/const.md
       - 11. 设置:
         - 数据类型转换: golang/设置/gomod.md
       - 12. 排序:
@@ -93,8 +94,11 @@ nav:
         - append: golang/slice/append.md
         - in: golang/slice/in.md
         - merge: golang/slice/merge.md
+        - readme: golang/slice/readme.md
       - 18. struct:
         - 善用空结构体: golang/struct/善用空结构体.md
+      - 19. other:
+        - 随机值: golang/other/随机值.md
 
   - Blog:
       - 1. git有用且不容易记住的命令: blog/git有用且不容易记住的命令.md
