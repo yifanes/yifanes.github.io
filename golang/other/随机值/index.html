@@ -13,7 +13,7 @@
         <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
       
       
-        <link rel="canonical" href="https://lemotu.com/base/rabbitmq/">
+        <link rel="canonical" href="https://lemotu.com/golang/other/随机值/">
       
       
         <meta name="author" content="lemotu">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
       
-        <title>3. rabbitMQ - Golang学习笔记</title>
+        <title>随机值 - Golang学习笔记</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.0284f74d.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.01803549.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -66,7 +66,7 @@
         <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
     
     
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                3. rabbitMQ
+                随机值
               
             </span>
           
@@ -170,7 +170,7 @@
         
   <li class="md-tabs__item">
     
-      <a href="../.." title="介绍" class="md-tabs__link">
+      <a href="../../.." title="介绍" class="md-tabs__link">
         介绍
       </a>
     
@@ -182,7 +182,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../golang/json/smart-config/" title="Golang" class="md-tabs__link">
+        <a href="../../json/smart-config/" title="Golang" class="md-tabs__link md-tabs__link--active">
           Golang
         </a>
       
@@ -195,7 +195,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../blog/git有用且不容易记住的命令/" title="Blog" class="md-tabs__link">
+        <a href="../../../blog/git有用且不容易记住的命令/" title="Blog" class="md-tabs__link">
           Blog
         </a>
       
@@ -208,7 +208,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../ascii/" title="基础知识" class="md-tabs__link md-tabs__link--active">
+        <a href="../../../base/ascii/" title="基础知识" class="md-tabs__link">
           基础知识
         </a>
       
@@ -245,7 +245,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="介绍" class="md-nav__link">
+    <a href="../../.." title="介绍" class="md-nav__link">
       介绍
     </a>
   </li>
@@ -255,10 +255,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Golang
@@ -276,7 +278,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/json/smart-config/" title="1. json" class="md-nav__link">
+    <a href="../../json/smart-config/" title="1. json" class="md-nav__link">
       1. json
     </a>
   </li>
@@ -307,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/struct/marshal/" title="2.1 解析" class="md-nav__link">
+    <a href="../../struct/marshal/" title="2.1 解析" class="md-nav__link">
       2.1 解析
     </a>
   </li>
@@ -319,7 +321,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/struct/tag/" title="2.2 标签" class="md-nav__link">
+    <a href="../../struct/tag/" title="2.2 标签" class="md-nav__link">
       2.2 标签
     </a>
   </li>
@@ -355,7 +357,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/reflect/type/" title="3.1 类型比对" class="md-nav__link">
+    <a href="../../reflect/type/" title="3.1 类型比对" class="md-nav__link">
       3.1 类型比对
     </a>
   </li>
@@ -391,7 +393,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
+    <a href="../../io/reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
       4.1 io.Reader和io.Writer
     </a>
   </li>
@@ -403,7 +405,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
+    <a href="../../io/bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
       4.2 bytes.buffer
     </a>
   </li>
@@ -439,7 +441,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
+    <a href="../../concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
       5.1 利用chan实现timeout
     </a>
   </li>
@@ -475,7 +477,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
+    <a href="../../函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
       6.1 函数作为参数
     </a>
   </li>
@@ -487,7 +489,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
+    <a href="../../函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
       6.2 函数类型申明
     </a>
   </li>
@@ -523,7 +525,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/time/时间计算/" title="7.1 时间计算" class="md-nav__link">
+    <a href="../../time/时间计算/" title="7.1 时间计算" class="md-nav__link">
       7.1 时间计算
     </a>
   </li>
@@ -535,7 +537,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
+    <a href="../../time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
       7.2 ticker and timer
     </a>
   </li>
@@ -571,7 +573,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/超时和重试/timeout/" title="超时" class="md-nav__link">
+    <a href="../../超时和重试/timeout/" title="超时" class="md-nav__link">
       超时
     </a>
   </li>
@@ -583,7 +585,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
+    <a href="../../超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
       并发使用chan还是mutex
     </a>
   </li>
@@ -619,7 +621,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/mod/go-mod/" title="go mod基础" class="md-nav__link">
+    <a href="../../mod/go-mod/" title="go mod基础" class="md-nav__link">
       go mod基础
     </a>
   </li>
@@ -655,7 +657,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
+    <a href="../../初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
       数据类型转换
     </a>
   </li>
@@ -667,7 +669,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/初识/const/" title="静态变量" class="md-nav__link">
+    <a href="../../初识/const/" title="静态变量" class="md-nav__link">
       静态变量
     </a>
   </li>
@@ -703,7 +705,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/设置/gomod/" title="数据类型转换" class="md-nav__link">
+    <a href="../../设置/gomod/" title="数据类型转换" class="md-nav__link">
       数据类型转换
     </a>
   </li>
@@ -739,7 +741,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-nav__link">
+    <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-nav__link">
       各种数据的sort方式
     </a>
   </li>
@@ -775,7 +777,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/http/get和post/" title="http请求方式" class="md-nav__link">
+    <a href="../../http/get和post/" title="http请求方式" class="md-nav__link">
       http请求方式
     </a>
   </li>
@@ -811,7 +813,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/redis/goredis/" title="goredis" class="md-nav__link">
+    <a href="../../redis/goredis/" title="goredis" class="md-nav__link">
       goredis
     </a>
   </li>
@@ -847,7 +849,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/runtime/runtime/" title="runtime" class="md-nav__link">
+    <a href="../../runtime/runtime/" title="runtime" class="md-nav__link">
       runtime
     </a>
   </li>
@@ -883,7 +885,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/类型转换/类型转换/" title="类型转换" class="md-nav__link">
+    <a href="../../类型转换/类型转换/" title="类型转换" class="md-nav__link">
       类型转换
     </a>
   </li>
@@ -919,7 +921,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/slice/append/" title="append" class="md-nav__link">
+    <a href="../../slice/append/" title="append" class="md-nav__link">
       append
     </a>
   </li>
@@ -931,7 +933,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/slice/in/" title="in" class="md-nav__link">
+    <a href="../../slice/in/" title="in" class="md-nav__link">
       in
     </a>
   </li>
@@ -943,7 +945,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/slice/merge/" title="merge" class="md-nav__link">
+    <a href="../../slice/merge/" title="merge" class="md-nav__link">
       merge
     </a>
   </li>
@@ -955,7 +957,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/slice/readme/" title="readme" class="md-nav__link">
+    <a href="../../slice/readme/" title="readme" class="md-nav__link">
       readme
     </a>
   </li>
@@ -991,7 +993,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../golang/struct/善用空结构体/" title="善用空结构体" class="md-nav__link">
+    <a href="../../struct/善用空结构体/" title="善用空结构体" class="md-nav__link">
       善用空结构体
     </a>
   </li>
@@ -1006,10 +1008,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-19" type="checkbox" id="nav-2-19">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-19" type="checkbox" id="nav-2-19" checked>
     
     <label class="md-nav__link" for="nav-2-19">
       19. other
@@ -1025,11 +1029,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../golang/other/随机值/" title="随机值" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="随机值" class="md-nav__link md-nav__link--active">
       随机值
     </a>
+    
   </li>
 
         
@@ -1068,7 +1081,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
+    <a href="../../../blog/git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-nav__link">
       1. git有用且不容易记住的命令
     </a>
   </li>
@@ -1080,7 +1093,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
+    <a href="../../../blog/一些有用的linux命令/" title="2. 一些有用的linux命令" class="md-nav__link">
       2. 一些有用的linux命令
     </a>
   </li>
@@ -1092,7 +1105,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
+    <a href="../../../blog/PHP开发中一些小技巧/" title="3. PHP开发中一些小技巧" class="md-nav__link">
       3. PHP开发中一些小技巧
     </a>
   </li>
@@ -1104,7 +1117,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
+    <a href="../../../blog/docker基础知识积累/" title="4. docker基础知识积累" class="md-nav__link">
       4. docker基础知识积累
     </a>
   </li>
@@ -1116,7 +1129,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
+    <a href="../../../blog/php常用面试题汇总/" title="5. php常用面试题汇总" class="md-nav__link">
       5. php常用面试题汇总
     </a>
   </li>
@@ -1128,7 +1141,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
+    <a href="../../../blog/php逐步更新的细节/" title="6. php逐步更新的细节" class="md-nav__link">
       6. php逐步更新的细节
     </a>
   </li>
@@ -1140,7 +1153,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
+    <a href="../../../blog/mac下回滚php版本到php7.0/" title="7. mac下回滚php版本到php7.0" class="md-nav__link">
       7. mac下回滚php版本到php7.0
     </a>
   </li>
@@ -1152,7 +1165,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/php中的null合并操作符/" title="8. php中的null合并操作符" class="md-nav__link">
+    <a href="../../../blog/php中的null合并操作符/" title="8. php中的null合并操作符" class="md-nav__link">
       8. php中的null合并操作符
     </a>
   </li>
@@ -1164,7 +1177,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
+    <a href="../../../blog/短链接服务的设计思路/" title="9. 短链接服务的设计思路" class="md-nav__link">
       9. 短链接服务的设计思路
     </a>
   </li>
@@ -1176,7 +1189,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/PHP异常那些事/" title="10. PHP异常那些事" class="md-nav__link">
+    <a href="../../../blog/PHP异常那些事/" title="10. PHP异常那些事" class="md-nav__link">
       10. PHP异常那些事
     </a>
   </li>
@@ -1188,7 +1201,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-nav__link">
+    <a href="../../../blog/在golang中使用简单Factory模式/" title="11. 在golang中使用简单Factory模式" class="md-nav__link">
       11. 在golang中使用简单Factory模式
     </a>
   </li>
@@ -1200,7 +1213,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
+    <a href="../../../blog/让解析json变得更加得心应手/" title="12. 让解析json变得更加得心应手" class="md-nav__link">
       12. 让解析json变得更加得心应手
     </a>
   </li>
@@ -1212,7 +1225,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
+    <a href="../../../blog/在Go中用四种方法实现超时问题/" title="13. 在Go中用四种方法实现超时问题" class="md-nav__link">
       13. 在Go中用四种方法实现超时问题
     </a>
   </li>
@@ -1224,7 +1237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
+    <a href="../../../blog/执行时间计算(golang)/" title="14. 执行时间计算(golang)" class="md-nav__link">
       14. 执行时间计算(golang)
     </a>
   </li>
@@ -1236,7 +1249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/sogou输入法+mac/" title="15. 让搜狗输入法在mac下用的更加得心应手" class="md-nav__link">
+    <a href="../../../blog/sogou输入法+mac/" title="15. 让搜狗输入法在mac下用的更加得心应手" class="md-nav__link">
       15. 让搜狗输入法在mac下用的更加得心应手
     </a>
   </li>
@@ -1248,7 +1261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../blog/使用golang和cobra构建健壮的命令行工具/" title="16. 使用golang和cobra构建健壮的命令行工具" class="md-nav__link">
+    <a href="../../../blog/使用golang和cobra构建健壮的命令行工具/" title="16. 使用golang和cobra构建健壮的命令行工具" class="md-nav__link">
       16. 使用golang和cobra构建健壮的命令行工具
     </a>
   </li>
@@ -1263,12 +1276,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       基础知识
@@ -1286,7 +1297,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ascii/" title="1. ascii" class="md-nav__link">
+    <a href="../../../base/ascii/" title="1. ascii" class="md-nav__link">
       1. ascii
     </a>
   </li>
@@ -1298,7 +1309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endian/" title="2. 理解字节序" class="md-nav__link">
+    <a href="../../../base/endian/" title="2. 理解字节序" class="md-nav__link">
       2. 理解字节序
     </a>
   </li>
@@ -1308,49 +1319,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        3. rabbitMQ
-      </label>
-    
-    <a href="./" title="3. rabbitMQ" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
       3. rabbitMQ
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="生产者和消费者" class="md-nav__link">
-    生产者和消费者
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1376,22 +1349,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="生产者和消费者" class="md-nav__link">
-    生产者和消费者
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1403,10 +1360,27 @@
               
                 
                 
-                <h1 id="_1">基础概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">生产者和消费者<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="https://storage.xueshop.cn/blog/2019-09-23-VDQFJL.png" /></p>
-<p><img alt="" src="https://storage.xueshop.cn/blog/2019-09-23-TPIvFz.png" /></p>
+                <h1 id="_1">随机值的写法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Float64</span><span class="p">())</span>
+
+<span class="nx">source</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">NewSource</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">UnixNano</span><span class="p">())</span>
+<span class="nx">r</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;-----&quot;</span><span class="p">)</span>
+<span class="nx">s2</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">NewSource</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nx">r2</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">s2</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">r2</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">r2</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+<span class="nx">s3</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">NewSource</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nx">r3</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">s3</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">r3</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">r3</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+<p>注意几点: 如果用intn方法,每次生成的结果一致,此时需要种子,如果种子是固定的每次的结果也一致,所以需要给个随机种子.</p>
                 
                   
                 
@@ -1427,7 +1401,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../endian/" title="2. 理解字节序" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../struct/善用空结构体/" title="善用空结构体" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1436,11 +1410,25 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                2. 理解字节序
+                善用空结构体
               </span>
             </div>
           </a>
         
+        
+          <a href="../../../blog/git有用且不容易记住的命令/" title="1. git有用且不容易记住的命令" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                1. git有用且不容易记住的命令
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
@@ -1462,12 +1450,12 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      <script src="../../../assets/javascripts/application.245445c6.js"></script>
       
         
         
           
-          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
           
             
               
@@ -1477,7 +1465,7 @@
           
         
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
       
     
   </body>
