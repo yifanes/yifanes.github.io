@@ -1,0 +1,1496 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="关于Golang学习总的知识和代码片段的积累记录">
+      
+      
+        <link rel="canonical" href="https://lemotu.com/golang/io/bufio/">
+      
+      
+        <meta name="author" content="lemotu">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>4.3 bufio - Golang学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#bufio" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://lemotu.com" title="Golang学习笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Golang学习笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                4.3 bufio
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="介绍" class="md-tabs__link">
+        介绍
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../json/smart-config/" title="Golang" class="md-tabs__link md-tabs__link--active">
+          Golang
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../base/ascii/" title="基础知识" class="md-tabs__link">
+          基础知识
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://lemotu.com" title="Golang学习笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Golang学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="介绍" class="md-nav__link">
+      介绍
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Golang
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Golang
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../json/smart-config/" title="1. json" class="md-nav__link">
+      1. json
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      2. 结构体
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        2. 结构体
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../struct/marshal/" title="2.1 解析" class="md-nav__link">
+      2.1 解析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../struct/tag/" title="2.2 标签" class="md-nav__link">
+      2.2 标签
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      3. 反射
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        3. 反射
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reflect/type/" title="3.1 类型比对" class="md-nav__link">
+      3.1 类型比对
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" checked>
+    
+    <label class="md-nav__link" for="nav-2-4">
+      4. io
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        4. io
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-writer/" title="4.1 io.Reader和io.Writer" class="md-nav__link">
+      4.1 io.Reader和io.Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bytes-buffer/" title="4.2 bytes.buffer" class="md-nav__link">
+      4.2 bytes.buffer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="4.3 bufio" class="md-nav__link md-nav__link--active">
+      4.3 bufio
+    </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      5. 并发编程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        5. 并发编程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-nav__link">
+      5.1 利用chan实现timeout
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      6. 函数
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        6. 函数
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../函数/把函数存放在数组中/" title="6.1 函数作为参数" class="md-nav__link">
+      6.1 函数作为参数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../函数/函数类型申明/" title="6.2 函数类型申明" class="md-nav__link">
+      6.2 函数类型申明
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      7. 时间
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        7. 时间
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../time/时间计算/" title="7.1 时间计算" class="md-nav__link">
+      7.1 时间计算
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../time/ticker-timer/" title="7.2 ticker and timer" class="md-nav__link">
+      7.2 ticker and timer
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      8. 超时和重试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        8. 超时和重试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../超时和重试/timeout/" title="超时" class="md-nav__link">
+      超时
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../超时和重试/chanormutex/" title="并发使用chan还是mutex" class="md-nav__link">
+      并发使用chan还是mutex
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      9. go mod
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-9">
+        9. go mod
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../mod/go-mod/" title="go mod基础" class="md-nav__link">
+      go mod基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      10. 初识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        10. 初识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../初识/数据类型转换/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../初识/const/" title="静态变量" class="md-nav__link">
+      静态变量
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      11. 设置
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-11">
+        11. 设置
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../设置/gomod/" title="数据类型转换" class="md-nav__link">
+      数据类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      12. 排序
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-12">
+        12. 排序
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../sort/各种数据的sort方式/" title="各种数据的sort方式" class="md-nav__link">
+      各种数据的sort方式
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-13" type="checkbox" id="nav-2-13">
+    
+    <label class="md-nav__link" for="nav-2-13">
+      13. http
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-13">
+        13. http
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../http/get和post/" title="http请求方式" class="md-nav__link">
+      http请求方式
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-14" type="checkbox" id="nav-2-14">
+    
+    <label class="md-nav__link" for="nav-2-14">
+      14. goredis
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-14">
+        14. goredis
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../redis/goredis/" title="goredis" class="md-nav__link">
+      goredis
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-15" type="checkbox" id="nav-2-15">
+    
+    <label class="md-nav__link" for="nav-2-15">
+      15. runtime
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-15">
+        15. runtime
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../runtime/runtime/" title="runtime" class="md-nav__link">
+      runtime
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-16" type="checkbox" id="nav-2-16">
+    
+    <label class="md-nav__link" for="nav-2-16">
+      16. 类型转换
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-16">
+        16. 类型转换
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../类型转换/类型转换/" title="类型转换" class="md-nav__link">
+      类型转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-17" type="checkbox" id="nav-2-17">
+    
+    <label class="md-nav__link" for="nav-2-17">
+      17. slice
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-17">
+        17. slice
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../slice/append/" title="append" class="md-nav__link">
+      append
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../slice/in/" title="in" class="md-nav__link">
+      in
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../slice/merge/" title="merge" class="md-nav__link">
+      merge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../slice/readme/" title="readme" class="md-nav__link">
+      readme
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-18" type="checkbox" id="nav-2-18">
+    
+    <label class="md-nav__link" for="nav-2-18">
+      18. struct
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-18">
+        18. struct
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../struct/善用空结构体/" title="善用空结构体" class="md-nav__link">
+      善用空结构体
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-19" type="checkbox" id="nav-2-19">
+    
+    <label class="md-nav__link" for="nav-2-19">
+      19. other
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-19">
+        19. other
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../other/随机值/" title="随机值" class="md-nav__link">
+      随机值
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      基础知识
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        基础知识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../base/ascii/" title="1. ascii" class="md-nav__link">
+      1. ascii
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../base/endian/" title="2. 理解字节序" class="md-nav__link">
+      2. 理解字节序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../base/rabbitmq/" title="3. rabbitMQ" class="md-nav__link">
+      3. rabbitMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../base/git emoji/" title="4. git emoji" class="md-nav__link">
+      4. git emoji
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="bufio">bufio<a class="headerlink" href="#bufio" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+   <span class="s">&quot;bufio&quot;</span>
+   <span class="s">&quot;fmt&quot;</span>
+   <span class="s">&quot;strings&quot;</span>
+   <span class="s">&quot;bytes&quot;</span>
+   <span class="s">&quot;io&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// bufio 包实现了带缓存的 I/O 操作</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 首先看reader和writer基本的结构</span>
+<span class="cm"> * // Reader implements buffering for an io.Reader object.</span>
+<span class="cm"> * type Reader struct {</span>
+<span class="cm"> *  buf          []byte</span>
+<span class="cm"> *  rd           io.Reader // reader provided by the client</span>
+<span class="cm"> *  r, w         int       // buf read and write positions</span>
+<span class="cm"> *  err          error</span>
+<span class="cm"> *  lastByte     int</span>
+<span class="cm"> *  lastRuneSize int</span>
+<span class="cm"> * }</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * // Writer implements buffering for an io.Writer object.</span>
+<span class="cm"> * // If an error occurs writing to a Writer, no more data will be</span>
+<span class="cm"> * // accepted and all subsequent writes will return the error.</span>
+<span class="cm"> * // After all data has been written, the client should call the</span>
+<span class="cm"> * // Flush method to guarantee all data has been forwarded to</span>
+<span class="cm"> * // the underlying io.Writer.</span>
+<span class="cm"> * type Writer struct {</span>
+<span class="cm"> *  err error</span>
+<span class="cm"> *  buf []byte</span>
+<span class="cm"> *  n   int</span>
+<span class="cm"> *  wr  io.Writer</span>
+<span class="cm"> * }</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * // ReadWriter 集成了 bufio.Reader 和 bufio.Writer, 实现了 io.ReadWriter 接口</span>
+<span class="cm"> * type ReadWriter struct {</span>
+<span class="cm"> *  *Reader</span>
+<span class="cm"> *  *Writer</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span>  <span class="p">{</span>
+   <span class="c1">// 1: 使用bufio.NewReader构造一个reader</span>
+   <span class="nx">inputReadBuf</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;1234567890&quot;</span><span class="p">)</span>
+   <span class="nx">reader</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf</span><span class="p">)</span>
+
+
+   <span class="c1">// 2: 使用bufio.NewWriter构造一个writer</span>
+   <span class="nx">buf</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">NewBuffer</span><span class="p">(</span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+   <span class="nx">writer</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewWriter</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+
+
+   <span class="c1">// 3: 函数Peek函数: 返回缓存的一个Slice(引用,不是拷贝)，引用缓存中前n字节数据</span>
+   <span class="c1">// &gt; 如果引用的数据长度小于 n，则返回一个错误信息</span>
+   <span class="c1">// &gt; 如果 n 大于缓存的总大小，则返回 ErrBufferFull</span>
+   <span class="c1">// 通过Peek的返回值，可以修改缓存中的数据, 但不能修改底层io.Reader中的数据</span>
+   <span class="nx">b</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">Peek</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Read data error&quot;</span><span class="p">)</span>
+      <span class="k">return</span>
+   <span class="p">}</span>
+   <span class="c1">// 修改第一个字符</span>
+   <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;A&#39;</span>
+   <span class="c1">// 重新读取</span>
+   <span class="nx">b</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">Peek</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+   <span class="nx">writer</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+   <span class="nx">writer</span><span class="p">.</span><span class="nx">Flush</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;buf(Changed): &quot;</span><span class="p">,</span> <span class="nx">buf</span><span class="p">,</span> <span class="s">&quot;\ninputReadBuf(Not Changed): &quot;</span><span class="p">,</span> <span class="nx">inputReadBuf</span><span class="p">)</span>
+
+
+   <span class="c1">// 4: Read函数, 每次读取一定量的数据, 这个由buf大小觉得, 所以我们可以循环读取数据, 直到Read返回0说明读取数据结束</span>
+   <span class="k">for</span> <span class="p">{</span>
+      <span class="nx">b1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+      <span class="nx">n1</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">b1</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">n1</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+         <span class="k">break</span>
+      <span class="p">}</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">n1</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b1</span><span class="p">))</span>
+   <span class="p">}</span>
+
+
+   <span class="c1">// 5: ReadByte和UnreadByte函数</span>
+   <span class="c1">// ReadByte 从 b 中读出一个字节并返回, 如果 b 中无可读数据，则返回一个错误</span>
+   <span class="c1">// UnreadByte 撤消最后一次读出的字节, 只有最后读出的字节可以被撤消, 无论任何操作，只要有内容被读出，就可以用 UnreadByte 撤消一个字节</span>
+   <span class="nx">inputReadBuf2</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;1234567890&quot;</span><span class="p">)</span>
+   <span class="nx">reader2</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf2</span><span class="p">)</span>
+   <span class="c1">// 读一个字节</span>
+   <span class="nx">b2</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">reader2</span><span class="p">.</span><span class="nx">ReadByte</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">b2</span><span class="p">))</span>
+   <span class="c1">// Unread一个字节</span>
+   <span class="nx">reader2</span><span class="p">.</span><span class="nx">UnreadByte</span><span class="p">()</span>
+   <span class="nx">b2</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">reader2</span><span class="p">.</span><span class="nx">ReadByte</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">b2</span><span class="p">))</span>
+
+
+   <span class="c1">// 6: ReadRune和UnreadRune函数, 类似上面两个函数</span>
+   <span class="c1">// ReadRune读出一个 UTF8 编码的字符并返回编码长度, 如果UTF8序列无法解码出一个正确的Unicode字符, 则只读出b中的一个字节，size 返回 1</span>
+   <span class="nx">inputReadBuf3</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文1234567890&quot;</span><span class="p">)</span>
+   <span class="nx">reader3</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf3</span><span class="p">)</span>
+   <span class="nx">b3</span><span class="p">,</span> <span class="nx">size</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">reader3</span><span class="p">.</span><span class="nx">ReadRune</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">b3</span><span class="p">),</span> <span class="nx">size</span><span class="p">)</span>
+   <span class="nx">reader3</span><span class="p">.</span><span class="nx">UnreadRune</span><span class="p">()</span>
+   <span class="nx">b3</span><span class="p">,</span> <span class="nx">size</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">reader3</span><span class="p">.</span><span class="nx">ReadRune</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">b3</span><span class="p">),</span> <span class="nx">size</span><span class="p">)</span>
+   <span class="c1">// 执行UnreadRune时候, 如果之前一步不是ReadRune, 那么会报错, 看下面</span>
+   <span class="nx">b33</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">reader3</span><span class="p">.</span><span class="nx">ReadByte</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">b33</span><span class="p">))</span>
+   <span class="nx">err3</span> <span class="o">:=</span> <span class="nx">reader3</span><span class="p">.</span><span class="nx">UnreadRune</span><span class="p">()</span>
+   <span class="k">if</span> <span class="nx">err3</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;ERR&quot;</span><span class="p">)</span>
+   <span class="p">}</span>
+
+
+   <span class="c1">// 7: 读取缓冲区中数据字节数(只有执行读才会使用到缓冲区, 否则是没有的)</span>
+   <span class="nx">inputReadBuf4</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文1234567890&quot;</span><span class="p">)</span>
+   <span class="nx">reader4</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf4</span><span class="p">)</span>
+   <span class="c1">// 下面返回0, 因为还没有开始读取, 缓冲区没有数据</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">reader4</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">())</span>
+   <span class="c1">// 下面返回strings的整体长度16(一个人中文是3长度)</span>
+   <span class="nx">reader4</span><span class="p">.</span><span class="nx">Peek</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">reader4</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">())</span>
+   <span class="c1">// 下面返回15, 因为readByte已经读取一个字节数据, 所以缓冲区还有15字节</span>
+   <span class="nx">reader4</span><span class="p">.</span><span class="nx">ReadByte</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">reader4</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">())</span>
+   <span class="c1">// 下面的特别有意思: 上面已经读取了一个字节, 想当于是将&quot;中&quot;读取了1/3, 那么如果现在使用readRune读取, 那么</span>
+   <span class="c1">// 由于无法解析, 那么仅仅读取一个byte, 所以下面的结果很显然</span>
+   <span class="c1">// 第一次: 无法解析, 那么返回一个byte, 所以输出的是14</span>
+   <span class="nx">reader4</span><span class="p">.</span><span class="nx">ReadRune</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">reader4</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">())</span>
+   <span class="c1">// 第二次读取, 还剩下&quot;中&quot;最后一个字节, 所以也会err, 所以输出13</span>
+   <span class="nx">reader4</span><span class="p">.</span><span class="nx">ReadRune</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">reader4</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">())</span>
+   <span class="c1">// 现在&quot;中&quot;读完了, 那么开始完整读取&quot;文&quot;, 这个OK的, 可以解析的, 所以可以读取三字节, 那么剩下10字节</span>
+   <span class="nx">reader4</span><span class="p">.</span><span class="nx">ReadRune</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">reader4</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">())</span>
+
+
+   <span class="c1">// 8: ReadSlice查找 delim 并返回 delim 及其之前的所有数据的切片, 该操作会读出数据，返回的切片是已读出数据的&quot;引用&quot;</span>
+   <span class="c1">// 如果 ReadSlice 在找到 delim 之前遇到错误, 则读出缓存中的所有数据并返回，同时返回遇到error（通常是 io.EOF）</span>
+   <span class="c1">// 如果 在整个缓存中都找不到 delim，则返回 ErrBufferFull</span>
+   <span class="c1">// 如果 ReadSlice 能找到 delim，则返回 nil</span>
+   <span class="c1">// 注意: 因为返回的Slice数据有可能被下一次读写操作修改, 因此大多数操作应该使用 ReadBytes 或 ReadString，它们返回数据copy</span>
+   <span class="c1">// 不推荐!</span>
+   <span class="nx">inputReadBuf5</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文123 4567 890&quot;</span><span class="p">)</span>
+   <span class="nx">reader5</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf5</span><span class="p">)</span>
+   <span class="k">for</span> <span class="p">;</span> <span class="p">;</span>  <span class="p">{</span>
+      <span class="nx">b5</span> <span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader5</span><span class="p">.</span><span class="nx">ReadSlice</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">)</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">b5</span><span class="p">))</span>
+      <span class="c1">// 读到最后</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="nx">io</span><span class="p">.</span><span class="nx">EOF</span> <span class="p">{</span>
+         <span class="k">break</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+
+   <span class="c1">// 9: ReadLine 是一个低级的原始的行读取操作, 一般应该使用 ReadBytes(&#39;\n&#39;) 或 ReadString(&#39;\n&#39;)</span>
+   <span class="c1">// ReadLine 通过调用 ReadSlice 方法实现，返回的也是&quot;引用&quot;, 回一行数据，不包括行尾标记（\n 或 \r\n）</span>
+   <span class="c1">// 如果 在缓存中找不到行尾标记，设置 isPrefix 为 true，表示查找未完成</span>
+   <span class="c1">// 如果 在当前缓存中找到行尾标记，将 isPrefix 设置为 false，表示查找完成</span>
+   <span class="c1">// 如果 ReadLine 无法获取任何数据，则返回一个错误信息（通常是 io.EOF）</span>
+   <span class="c1">// 不推荐!</span>
+   <span class="nx">inputReadBuf6</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文123\n4567\n890&quot;</span><span class="p">)</span>
+   <span class="nx">reader6</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf6</span><span class="p">)</span>
+   <span class="k">for</span> <span class="p">;</span> <span class="p">;</span>  <span class="p">{</span>
+      <span class="nx">l</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader6</span><span class="p">.</span><span class="nx">ReadLine</span><span class="p">()</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">l</span><span class="p">),</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="nx">io</span><span class="p">.</span><span class="nx">EOF</span> <span class="p">{</span>
+         <span class="k">break</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+
+   <span class="c1">// 10: ReadBytes查找 delim 并读出 delim 及其之前的所有数据</span>
+   <span class="c1">// 如果 ReadBytes 在找到 delim 之前遇到错误, 则返回遇到错误之前的所有数据，同时返回遇到的错误（通常是 io.EOF）</span>
+   <span class="c1">// 如果 ReadBytes 找不到 delim 时，err != nil</span>
+   <span class="c1">// 返回的是数据的copy, 不是引用</span>
+   <span class="nx">inputReadBuf7</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文123;4567;890&quot;</span><span class="p">)</span>
+   <span class="nx">reader7</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf7</span><span class="p">)</span>
+   <span class="k">for</span> <span class="p">;</span> <span class="p">;</span>  <span class="p">{</span>
+      <span class="nx">line</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader7</span><span class="p">.</span><span class="nx">ReadBytes</span><span class="p">(</span><span class="sc">&#39;;&#39;</span><span class="p">)</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">line</span><span class="p">))</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+         <span class="k">break</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+
+   <span class="c1">// 11: ReadString返回的是字符串, 不是bytes</span>
+   <span class="nx">inputReadBuf8</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文123;4567;890&quot;</span><span class="p">)</span>
+   <span class="nx">reader8</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf8</span><span class="p">)</span>
+   <span class="k">for</span> <span class="p">;</span> <span class="p">;</span>  <span class="p">{</span>
+      <span class="nx">line</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">reader8</span><span class="p">.</span><span class="nx">ReadString</span><span class="p">(</span><span class="sc">&#39;;&#39;</span><span class="p">)</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+         <span class="k">break</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+
+   <span class="c1">//12: Flush函数用于提交数据, 立即更新</span>
+   <span class="c1">// Available函数返回缓存中的可以空间</span>
+   <span class="c1">// b10是保存数据的数组, 不是writer的缓冲区, 别搞错了</span>
+   <span class="nx">b10</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">NewBuffer</span><span class="p">(</span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+   <span class="c1">// 下面会分配4096字节空间缓冲区</span>
+   <span class="nx">writer10</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewWriter</span><span class="p">(</span><span class="nx">b10</span><span class="p">)</span>
+   <span class="nx">writer10</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;1234567890&quot;</span><span class="p">)</span>
+   <span class="c1">// 此时没有flush, 那么输出的是&quot;&quot;, 但是缓冲区使用了10个字节, 那么剩下4086, Buffered()返回的是缓冲区还没有提交的数据, 此处显然是10</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">writer10</span><span class="p">.</span><span class="nx">Available</span><span class="p">(),</span> <span class="nx">writer10</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">(),</span> <span class="nx">b10</span><span class="p">)</span>
+   <span class="c1">// 下面flush后, 将缓冲区的数据全部写入b10中, 缓冲区被清空, 所以缓冲区变成4096, Buffered()返回的是0, 说明数据被写入</span>
+   <span class="nx">writer10</span><span class="p">.</span><span class="nx">Flush</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">writer10</span><span class="p">.</span><span class="nx">Available</span><span class="p">(),</span> <span class="nx">writer10</span><span class="p">.</span><span class="nx">Buffered</span><span class="p">(),</span> <span class="nx">b10</span><span class="p">)</span>
+
+
+   <span class="c1">// 13: WriteString(...), Write(...), WriteByte(...), WriteRune(...)函数</span>
+   <span class="c1">// 都是写数据函数</span>
+   <span class="nx">b11</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">NewBuffer</span><span class="p">(</span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>
+   <span class="nx">writer11</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewWriter</span><span class="p">(</span><span class="nx">b11</span><span class="p">)</span>
+   <span class="nx">writer11</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;ABC&quot;</span><span class="p">)</span>
+   <span class="nx">writer11</span><span class="p">.</span><span class="nx">WriteByte</span><span class="p">(</span><span class="nb">byte</span><span class="p">(</span><span class="sc">&#39;M&#39;</span><span class="p">))</span>
+   <span class="c1">// Rune的意思是: 代表一个字符, 那么需要一次一个字符写入</span>
+   <span class="nx">writer11</span><span class="p">.</span><span class="nx">WriteRune</span><span class="p">(</span><span class="nb">rune</span><span class="p">(</span><span class="sc">&#39;好&#39;</span><span class="p">))</span>
+   <span class="nx">writer11</span><span class="p">.</span><span class="nx">WriteRune</span><span class="p">(</span><span class="nb">rune</span><span class="p">(</span><span class="sc">&#39;么&#39;</span><span class="p">))</span>
+   <span class="nx">writer11</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;1234567890&quot;</span><span class="p">))</span>
+   <span class="nx">writer11</span><span class="p">.</span><span class="nx">Flush</span><span class="p">()</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b11</span><span class="p">)</span>
+
+
+   <span class="c1">// 14: WriteTo函数</span>
+   <span class="nx">inputReadBuf9</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;中文1234567890&quot;</span><span class="p">)</span>
+   <span class="nx">reader9</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">inputReadBuf9</span><span class="p">)</span>
+   <span class="nx">b9</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">NewBuffer</span><span class="p">(</span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+   <span class="nx">reader9</span><span class="p">.</span><span class="nx">WriteTo</span><span class="p">(</span><span class="nx">b9</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b9</span><span class="p">)</span>
+
+
+   <span class="c1">// 15: ReadFrom函数</span>
+   <span class="nx">inputReadBuf15</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;率哪来的顺丰内部了第三方吧&quot;</span><span class="p">)</span>
+   <span class="nx">b15</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">NewBuffer</span><span class="p">(</span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+   <span class="nx">writer15</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">NewWriter</span><span class="p">(</span><span class="nx">b15</span><span class="p">)</span>
+   <span class="nx">writer15</span><span class="p">.</span><span class="nx">ReadFrom</span><span class="p">(</span><span class="nx">inputReadBuf15</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b15</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../bytes-buffer/" title="4.2 bytes.buffer" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                4.2 bytes.buffer
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../concurrent/timeout-by-chan/" title="5.1 利用chan实现timeout" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                5.1 利用chan实现timeout
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
